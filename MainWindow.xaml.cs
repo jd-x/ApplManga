@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Linq;
 using System.Windows.Controls;
+using System.Collections.Generic;
 using MahApps.Metro.Controls;
+using ApplManga.ViewModels;
 
 namespace ApplManga {
     /// <summary>
@@ -10,15 +12,16 @@ namespace ApplManga {
     /// </summary>
     public partial class MainWindow : MetroWindow {
         public MainWindow() {
-            InitializeComponent();
             //dataGrid.AutoGenerateColumns = true;
 
             //dataGrid.ItemsSource = Environment.GetEnvironmentVariables()
             //    .Cast<DictionaryEntry>().ToList();
-        }
+            var mainViewModel = new MainViewModel();
+            mainViewModel.Tabs.Add(new ItemViewModel("Home"));
+            mainViewModel.Tabs.Add(new ItemViewModel("Manga List"));
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {
-
+            this.DataContext = mainViewModel;
+            InitializeComponent();
         }
     }
 }

@@ -13,6 +13,7 @@
     MinWidth="800"
     
     WindowTransitionsEnabled="False"
+    
     ResizeMode="CanResizeWithGrip"
     WindowStartupLocation="CenterScreen">
 
@@ -29,70 +30,16 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TabControl Style="{StaticResource TabControlStyle}" Grid.Row="0">
-            <!--TabItem Style="{StaticResource TabItemStyle}">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <DockPanel LastChildFill="True" HorizontalAlignment="left">
-                            <Rectangle DockPanel.Dock="Left" Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}" >
-                                <Rectangle.OpacityMask>
-                                    <VisualBrush Stretch="Fill" Visual="{iconPacks:PackIconFontAwesome Kind=Home}" />
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <Label Padding="10,2,2,2" Style="{StaticResource TabItemText}" FontSize="14">
-                                Home
-                            </Label>
-                        </DockPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
-                <Grid>
-                    <Button Content="{iconPacks:PackIconFontAwesome Kind=Home}" HorizontalAlignment="Right" Margin="0,0,9.667,9.667"  VerticalAlignment="Bottom" Width="75" Grid.Row="1"/>
-                    <Label Content="A Text Box" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="125,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159" TextChanged="TextBox_TextChanged"/>
-                    <Label Content="A Combo Box" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="125,46,0,0" VerticalAlignment="Top" Width="159"/>
-                    <RadioButton Content="A Radio Button" HorizontalAlignment="Left" Margin="19,80,0,0" VerticalAlignment="Top"/>
-                    <CheckBox Content="A CheckBox" HorizontalAlignment="Left" Margin="158,79,0,0" VerticalAlignment="Top"/>
-                    <DatePicker HorizontalAlignment="Left" Margin="125,109,0,0" VerticalAlignment="Top" Width="159"/>
-                    <Label Content="A Date Picker" HorizontalAlignment="Left" Margin="11,109,0,0" VerticalAlignment="Top"/>
-                    <DataGrid x:Name="dataGrid" Margin="10,149,9.667,37.667" Grid.RowSpan="2"/>
-                </Grid>
-            </>
-            <TabItem Style="{StaticResource TabItemStyle}">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <DockPanel LastChildFill="True" HorizontalAlignment="Left">
-                            <Rectangle DockPanel.Dock="Left" Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}" >
-                                <Rectangle.OpacityMask>
-                                    <VisualBrush Stretch="Fill" Visual="{iconPacks:PackIconFontAwesome Kind=Book}" />
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                            <Label Padding="10,2,2,2" Style="{StaticResource TabItemText}" FontSize="14">
-                                Manga List
-                            </Label>
-                        </DockPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
-            </TabItem-->
+        <TabControl ItemsSource="{Binding Tabs}" Grid.Row="0">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding TabName}" FontSize="14" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
         </TabControl>
-        <!--Controls:FlyoutsControl>
-            <Controls:Flyout
-                x:Name="mangaListMahFlyout"
-                Header="All Manga"
-                Position="Left"
-                HorizontalContentAlignment="Left"
-                HorizontalAlignment="Left"
-                Margin="0, 0, 0, 0"
-                Width="250"
-                Theme="Inverse"
-                
-                AnimateOpacity="True"
-                AnimateOnPositionChange="True"
-                AreAnimationsEnabled="True"
-                
-                IsOpen="True"
-                IsPinned="True">
-            </Controls:Flyout>
-        </-->
     </Grid>
 </Controls:MetroWindow>

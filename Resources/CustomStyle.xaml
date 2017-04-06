@@ -130,7 +130,7 @@
     </Style>
 
     <!--LABEL TEMPLATE-->
-    <Style x:Key="TabItemText" TargetType="{x:Type Label}">
+    <Style x:Key="TabItemText" TargetType="{x:Type TextBlock}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="True">
                 <Setter Property="Foreground" Value="Black" />
