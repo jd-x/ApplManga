@@ -10,6 +10,9 @@ namespace ApplManga {
 
             this.DataContext = new MainViewModel(this.Dispatcher);
             InitializeComponent();
+
+            // Enables dragging for borderless forms
+            this.MouseLeftButtonDown += delegate { this.DragMove(); };
         }
     }
 }

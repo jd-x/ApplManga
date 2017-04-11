@@ -12,6 +12,7 @@
     MinHeight="600"
     MinWidth="800"
     
+    ShowTitleBar="False"
     BorderThickness="0"
     GlowBrush="Silver"
     
