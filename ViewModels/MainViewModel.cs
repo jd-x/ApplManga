@@ -1,14 +1,20 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace ApplManga.ViewModels {
     public class MainViewModel : ViewModelBase {
-        private ObservableCollection<ItemViewModel> tabs = new ObservableCollection<ItemViewModel>();
+        private Dispatcher _dispatcher;
 
-        public ObservableCollection<ItemViewModel> Tabs {
-            get {
-                return tabs;
-            }
+        public MainViewModel(Dispatcher dispatcher) {
+            this._dispatcher = dispatcher;
+            this.ItemTabs = new ObservableCollection<ItemTabsViewModel>(
+                new[] {
+                    new ItemTabsViewModel(this, "Home"),
+                    new ItemTabsViewModel(this, "Manga List"),
+                    new ItemTabsViewModel(this, "Favorites")
+                });
         }
+
+        public ObservableCollection<ItemTabsViewModel> ItemTabs { get; set; }
     }
 }

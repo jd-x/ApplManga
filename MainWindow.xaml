@@ -12,9 +12,11 @@
     MinHeight="600"
     MinWidth="800"
     
-    WindowTransitionsEnabled="False"
+    BorderThickness="0"
+    GlowBrush="Silver"
     
     ResizeMode="CanResizeWithGrip"
+    WindowTransitionsEnabled="False"
     WindowStartupLocation="CenterScreen">
 
     <Controls:MetroWindow.Resources>
@@ -30,16 +32,15 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TabControl ItemsSource="{Binding Tabs}" Grid.Row="0">
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding TabName}" FontSize="14" />
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
-                <DataTemplate>
-                </DataTemplate>
-            </TabControl.ContentTemplate>
+        <TabControl Grid.Row="0"
+                    DisplayMemberPath="TabCaption"
+                    ItemsSource="{Binding ItemTabs, Mode=OneWay}"
+                    Style="{StaticResource TabControlStyle}">
         </TabControl>
+        <StatusBar Grid.Row="1">
+            <StatusBarItem Content="App Version" />
+            <Separator Style="{DynamicResource MetroStatusBarSeparator}" />
+            <StatusBarItem Content="Sample content" />
+        </StatusBar>
     </Grid>
 </Controls:MetroWindow>
