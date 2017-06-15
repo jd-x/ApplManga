@@ -9,9 +9,9 @@ namespace ApplManga.ViewModels {
             this._dispatcher = dispatcher;
             this.ItemTabs = new ObservableCollection<ItemTabsViewModel>(
                 new[] {
-                    new ItemTabsViewModel(this, "Home"),
-                    new ItemTabsViewModel(this, "Manga List"),
-                    new ItemTabsViewModel(this, "Favorites")
+                    new ItemTabsViewModel(this, "DOWNLOADS", "DesktopDownload"),
+                    new ItemTabsViewModel(this, "BROWSE MANGA", "Book"),
+                    new ItemTabsViewModel(this, "FAVORITES", "Star")
                 });
         }
 
