@@ -5,8 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ApplManga.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
+    d:DesignHeight="600"
+    d:DesignWidth="600"
     mc:Ignorable="d">
-    <Grid Background="Red" />
+    <Grid Style="{StaticResource BaseTabContentGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="24" Text="{Binding TabCaption}" />
+        <TextBox FontSize="24" Text="Insert text here" Width="600" Grid.Row="0" />
+        <TextBox FontSize="24" Text="Insert text here" Width="600" Grid.Row="1" />
+    </Grid>
 </UserControl>

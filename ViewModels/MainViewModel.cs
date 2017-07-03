@@ -5,19 +5,19 @@ namespace ApplManga.ViewModels {
     public class MainViewModel : ViewModelBase {
         private Dispatcher _dispatcher;
 
+        private ObservableCollection<ViewModelBase> _tabItems = new ObservableCollection<ViewModelBase>();
+        public ObservableCollection<ViewModelBase> TabItemCollection { get { return _tabItems;  } }
+
         public MainViewModel(Dispatcher dispatcher) {
             this._dispatcher = dispatcher;
 
-            TabItemsCollection.Add(new DownloadsViewModel("DOWNLOADS", "DesktopDownload"));
-            TabItemsCollection.Add(new BrowseViewModel("BROWSE MANGA", "Book"));
-            TabItemsCollection.Add(new FavoritesViewModel("FAVORITES", "Star"));
-            TabItemsCollection.Add(new FoldersViewModel("MANAGE FOLDERS", "FileDirectory"));
+            TabItemCollection.Add(new DownloadsViewModel("DOWNLOADS", "DesktopDownload"));
+            TabItemCollection.Add(new BrowseViewModel("BROWSE MANGA", "Book"));
+            TabItemCollection.Add(new FavoritesViewModel("FAVORITES", "Star"));
+            TabItemCollection.Add(new FoldersViewModel("MANAGE FOLDERS", "FileDirectory"));
 
             SelectedTabIndex = 0;
         }
-
-        private ObservableCollection<ViewModelBase> _tabItems = new ObservableCollection<ViewModelBase>();
-        public ObservableCollection<ViewModelBase> TabItemsCollection { get { return _tabItems;  } }
 
         private int _selectedTabIndex;
         public int SelectedTabIndex {

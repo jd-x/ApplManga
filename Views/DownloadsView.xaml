@@ -5,8 +5,43 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ApplManga.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
+    d:DesignHeight="600"
+    d:DesignWidth="600"
     mc:Ignorable="d">
-    <Grid Background="DeepPink" />
+    <Grid Style="{StaticResource BaseTabContentGridStyle}">
+        <ListView Name="DownloadList" Margin="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Width="40"
+                        DisplayMemberBinding="{Binding DlStatus}"
+                        Header="Status" />
+                    <GridViewColumn
+                        Width="200"
+                        DisplayMemberBinding="{Binding DlFileName}"
+                        Header="Manga" />
+                    <GridViewColumn
+                        Width="40"
+                        DisplayMemberBinding="{Binding DlFileSize}"
+                        Header="Size" />
+                    <GridViewColumn
+                        Width="60"
+                        DisplayMemberBinding="{Binding DlProgress}"
+                        Header="Progress" />
+                    <GridViewColumn
+                        Width="60"
+                        DisplayMemberBinding="{Binding DlSpeed}"
+                        Header="Speed" />
+                    <GridViewColumn
+                        Width="100"
+                        DisplayMemberBinding="{Binding DlSource}"
+                        Header="Source" />
+                    <GridViewColumn
+                        Width="100"
+                        DisplayMemberBinding="{Binding DlDateAdded}"
+                        Header="Added" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
 </UserControl>
