@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:ApplManga.Resources"
-    xmlns:viewModels="clr-namespace:ApplManga.ViewModels">
+    xmlns:viewModels="clr-namespace:ApplManga.ViewModels"
+    xmlns:views="clr-namespace:ApplManga.Views">
 
     <DropShadowEffect
         x:Key="z-depth3"
@@ -120,6 +121,7 @@
         <Setter Property="Foreground" Value="{StaticResource MetroFGBrush}" />
         <Setter Property="Background" Value="White" />
         <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
+        <Setter Property="Padding" Value="0" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         <Setter Property="Template">
@@ -215,6 +217,19 @@
                                             Foreground="{TemplateBinding Foreground}"
                                             Text="{TemplateBinding Title}"
                                             TextTrimming="CharacterEllipsis" />
+                                        <Grid Grid.Row="2">
+                                            <Path
+                                                x:Name="MetroResizeGrip"
+                                                Width="12"
+                                                Height="12"
+                                                Margin="1"
+                                                HorizontalAlignment="Right"
+                                                Data="F1 M1,10 L3,10 M5,10 L7,10 M9,10 L11,10 M2,9 L2,11 M6,9 L6,11 M10,9 L10,11 M5,6 L7,6 M9,6 L11,6 M6,5 L6,7 M10,5 L10,7 M9,2 L11,2 M10,1 L10,3"
+                                                Stretch="None"
+                                                Stroke="{StaticResource MetroFGBrush}"
+                                                StrokeThickness="1"
+                                                Visibility="Collapsed" />
+                                        </Grid>
                                     </Grid>
                                 </AdornerDecorator>
                             </Border>
@@ -230,6 +245,13 @@
                             <Setter TargetName="RestoreWindowButton" Property="Visibility" Value="Visible" />
                             <Setter TargetName="MetroTitleBarLayoutRoot" Property="Margin" Value="7" />
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
+                                <Condition Property="WindowState" Value="Normal" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="MetroResizeGrip" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -238,15 +260,16 @@
             <Setter.Value>
                 <WindowChrome
                     CornerRadius="0"
-                    GlassFrameThickness="0"
+                    GlassFrameThickness="1"
                     UseAeroCaptionButtons="False" />
             </Setter.Value>
         </Setter>
     </Style>
 
-    <!-- GRID TEMPLATE -->
+    <!-- MAIN GRID TEMPLATE -->
     <Style x:Key="GridDefaultStyle" TargetType="{x:Type Grid}">
         <Setter Property="Background" Value="{StaticResource TabContentBGBrush}" />
+        <Setter Property="Margin" Value="-7" />
     </Style>
 
     <!-- RECTANGLE TEMPLATE -->
@@ -258,7 +281,7 @@
     <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
         <Setter Property="Background" Value="{StaticResource TabControlBGBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="ContentTemplate" Value="{DynamicResource TabItemContentTemplate}" />
+        <Setter Property="SelectedIndex" Value="{Binding SelectedTabIndex}" />
         <Setter Property="ItemContainerStyle" Value="{DynamicResource TabItemStyle}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="0" />
@@ -372,10 +395,25 @@
         </Setter>
     </Style>
 
-    <!-- TABCONTENT TEMPLATE -->
-    <DataTemplate x:Key="TabItemContentTemplate" DataType="{x:Type viewModels:ItemTabsViewModel}">
+    <!-- TABCONTENT TEMPLATES -->
+    <DataTemplate x:Name="DownloadsViewTemplate" DataType="{x:Type viewModels:DownloadsViewModel}">
+        <views:DownloadsView DataContext="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Name="BrowseViewTemplate" DataType="{x:Type viewModels:BrowseViewModel}">
+        <views:BrowseView DataContext="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Name="FavoritesViewTemplate" DataType="{x:Type viewModels:FavoritesViewModel}">
+        <views:FavoritesView DataContext="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Name="FoldersViewTemplate" DataType="{x:Type viewModels:FoldersViewModel}">
+        <views:FoldersView DataContext="{Binding}" />
+    </DataTemplate>
+
+    <!--DataTemplate x:Key="TabItemContentTemplate" DataType="{x:Type viewModels:ViewModelBase}">
         <Grid
-            Grid.Row="0"
             Margin="200,0,0,0"
             RenderOptions.ClearTypeHint="Enabled"
             TextOptions.TextFormattingMode="Display">
@@ -385,6 +423,6 @@
                 FontWeight="Bold"
                 Foreground="{DynamicResource GrayBrush6}"
                 Text="{Binding TabCaption, StringFormat='{}{0} content'}" />
-        </Grid>
-    </DataTemplate>
+        </>
+    </-->
 </ResourceDictionary>

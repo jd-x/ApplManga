@@ -9,25 +9,16 @@
     Title="ApplManga"
     Width="800"
     Height="600"
+    MinWidth="800"
+    MinHeight="600"
     Style="{StaticResource MetroWindowStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Grid Style="{StaticResource GridDefaultStyle}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <!--Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </>
-        <Rectangle Grid.Row="1" Style="{StaticResource RectangleDefaultStyle}" /-->
         <TabControl
             DisplayMemberPath="TabCaption"
-            ItemsSource="{Binding ItemTabs, Mode=OneWay}"
+            ItemsSource="{Binding TabItemsCollection, Mode=OneWay}"
             Style="{StaticResource TabControlStyle}" />
     </Grid>
 </Window>
