@@ -1,7 +1,6 @@
-﻿using ApplManga.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using System;
+using ApplManga.ViewModels;
 
 namespace ApplManga {
     /// <summary>

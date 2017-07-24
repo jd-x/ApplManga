@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApplManga.ViewModels {
+namespace ApplManga.Utils {
     public class GroupsData {
         public string groupName { get; set; }
         public string mangaTitle { get; set; }

@@ -2,17 +2,10 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace ApplManga.ViewModels.Converters {
-    public class DisplaySpecialChars : IValueConverter {
+namespace ApplManga.Converters {
+    public class TypeOfConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            string outputString = string.Empty;
-            string inputString = value as string;
-
-            if(value != null) {
-                string copyright = "\u00A9";
-            }
-
-            return outputString;
+            return (value == null) ? null : value.GetType();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

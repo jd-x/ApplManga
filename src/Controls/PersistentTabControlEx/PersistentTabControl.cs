@@ -4,17 +4,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace ApplManga.Controls {
+namespace ApplManga.Controls.PersistentTabControlEx {
     /// <summary>
     /// Extended TabControl to prevent VisualTree reload when switching tabs
     /// Ref: https://stackoverflow.com/questions/9794151/stop-tabcontrol-from-recreating-its-children
     /// http://www.pluralsight-training.net/community/blogs/eburke/archive/2009/04/30/keeping-the-wpf-tab-control-from-destroying-its-children.aspx
     /// </summary>
     [TemplatePart(Name = "PART_ItemsHolder", Type = typeof(Panel))]
-    public class TabControlEx : TabControl {
+    public class PersistentTabControl : TabControl {
         private Panel ItemsHolderPanel = null;
 
-        public TabControlEx() : base() {
+        public PersistentTabControl() : base() {
             // This is necessary so that we get the initial databound selected item
             ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
         }

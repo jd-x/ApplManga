@@ -6,9 +6,9 @@
     xmlns:local="clr-namespace:ApplManga.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="600"
-    d:DesignWidth="600"
+    d:DesignWidth="824"
     mc:Ignorable="d">
-    <Grid Style="{StaticResource BaseTabContentGridStyle}">
+    <Grid Style="{StaticResource TabContentGridStyle}">
         <ListView Name="DownloadList" Margin="5">
             <ListView.View>
                 <GridView>

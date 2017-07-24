@@ -1,9 +1,10 @@
-﻿using ApplManga.ViewModels;
+﻿using System;
 using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Linq;
-using ApplManga.Utils;
-using System.Collections.Generic;
+using ApplManga.Models;
+using ApplManga.Utils.AppLogger.Core.Logger;
+using ApplManga.Utils.WebScraper.Core;
+using ApplManga.Utils.WebScraper.Core.Repos;
+using ApplManga.Utils.WebScraper.Core.Scrapers;
 
 namespace ApplManga.ViewModels {
     public class BrowseViewModel : ViewModelBase {
@@ -11,28 +12,51 @@ namespace ApplManga.ViewModels {
 
         public string TabIcon { get; private set; }
 
-        private ObservableCollection<MangaData> _mangaList = new ObservableCollection<MangaData>();
-        public ObservableCollection<MangaData> MangaList {
-            get { return _mangaList; }
-            set { _mangaList = value; }
+        private ObservableCollection<MangaList> _manga;
+        public ObservableCollection<MangaList> Manga {
+            get { return _manga; }
+            set { _manga = value; }
         }
-        
+
         public BrowseViewModel(string tabCaption, string tabIcon) {
             this.TabCaption = tabCaption;
             this.TabIcon = tabIcon;
 
-            WebScraper webScraper = new WebScraper();
-            List<string> mangaTitles = new List<string>();
+            try {
+                var htmlLoader = new HtmlDocLoader();
+                var scraperRepo = new WebScraperRepo();
+                var scrapers = new IWebScraper[] { new MangaFoxWebScraper() };
 
-            mangaTitles = webScraper.GetCellsFromHTML(
-                "https://www.mangaupdates.com/series.html?page=1&perpage=100&output=xmlp",
-                "//table[contains(@class, 'series_rows_table')]",
-                "tr[3]",
-                "//td[contains(@class, 'col1')]/a/@href");
+                /*foreach (var scraper in scrapers) {
+                    scraper.Scrape(htmlLoader, scraperRepo);
+                }*/
 
-            foreach(string title in mangaTitles) {
-                _mangaList.Add(new MangaData(title));
+                _manga = new ObservableCollection<MangaList>(scraperRepo.GetEntireList());
+            } catch (Exception ex) {
+                AppLogHelper.Log(AppLoggerBase.LogTarget.File, "Error running WebScraper: " + ex.Message);
+                Console.WriteLine(ex.InnerException);
             }
+
+
+            /*MangaImgs = new ObservableCollection<MangaImages> { };
+            DirectoryInfo mangaCoverDir = new DirectoryInfo(@"C:\Users\jadem\Desktop\ThumbnailSource");
+
+            foreach (FileInfo mangaCoverImage in mangaCoverDir.GetFiles("*.jpg")) {
+                MangaImgs.Add(new MangaImages { ImagePath = mangaCoverImage.FullName, Title = mangaCoverImage.Name });
+            }
+
+            _mangaImgs = new ObservableCollection<MangaImages>(MangaImgs);*/
         }
+
+        /*private ObservableCollection<MangaImages> _mangaImgs;
+        public ObservableCollection<MangaImages> MangaImgs {
+            get { return _mangaImgs; }
+            set { _mangaImgs = value; }
+        }*/
     }
+
+    /*public class MangaImages {
+        public string ImagePath { get; set; }
+        public string Title { get; set; }
+    }*/
 }

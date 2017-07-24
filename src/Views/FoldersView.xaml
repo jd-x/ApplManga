@@ -6,15 +6,23 @@
     xmlns:local="clr-namespace:ApplManga.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="600"
-    d:DesignWidth="600"
+    d:DesignWidth="824"
     mc:Ignorable="d">
-    <Grid Style="{StaticResource BaseTabContentGridStyle}">
+    <Grid Style="{StaticResource TabContentGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <TextBlock FontSize="24" Text="{Binding TabCaption}" />
-        <TextBox FontSize="24" Text="Insert text here" Width="600" Grid.Row="0" />
-        <TextBox FontSize="24" Text="Insert text here" Width="600" Grid.Row="1" />
+        <TextBox
+            Grid.Row="0"
+            Width="600"
+            FontSize="24"
+            Text="Insert text here" />
+        <TextBox
+            Grid.Row="1"
+            Width="600"
+            FontSize="24"
+            Text="Insert text here" />
     </Grid>
 </UserControl>
