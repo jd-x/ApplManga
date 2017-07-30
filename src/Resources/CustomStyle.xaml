@@ -423,6 +423,29 @@
     <SolidColorBrush x:Key="SearchBox_BackgroundBrush" Color="#FFF7F7F7" />
     <SolidColorBrush x:Key="SearchBox_BackgroundBrush_MouseOver" Color="White" />
     <SolidColorBrush x:Key="SearchBox_ForegroundBrush" Color="Black" />
+    <SolidColorBrush x:Key="SearchBox_IconBackgroundBrush" Color="White" />
+    <SolidColorBrush x:Key="SearchBox_IconBackgroundBrush_MouseOver" Color="White" />
+    <SolidColorBrush x:Key="SearchBox_IconBackgroundBrush_MouseDown" Color="OrangeRed" />
+    <SolidColorBrush x:Key="SearchBox_IconForegroundBrush" Color="White" />
+    <SolidColorBrush x:Key="SearchBox_IconForegroundBrush_MouseOver" Color="OrangeRed" />
+
+    <Style x:Key="SearchBox_IconBorderStyle" TargetType="Border">
+        <Setter Property="Width" Value="34" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="{StaticResource SearchBox_BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+    <Style
+        x:Key="SearchBox_TextBlockHoverStyle"
+        BasedOn="{StaticResource MetroButtonTextBlockDefaultStyle}"
+        TargetType="TextBlock">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Foreground" Value="{StaticResource SearchBox_ForegroundBrush}" />
+    </Style>
 
 
     <Style x:Key="{x:Type s:SearchBox}" TargetType="{x:Type s:SearchBox}">
@@ -445,38 +468,44 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid x:Name="LayoutGrid">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualHeight}" />
-                            </Grid.ColumnDefinitions>
-                            <ScrollViewer x:Name="PART_ContentHost" Grid.Column="0" />
-                            <Label
-                                x:Name="SearchWatermarkLabel"
-                                Margin="5,2,5,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Content="{TemplateBinding Tag}"
-                                FontSize="16"
-                                Foreground="Gray"
-                                Visibility="Collapsed" />
-                            <Border
-                                x:Name="PART_SearchIconBorder"
-                                Grid.Column="1"
-                                Padding="1"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                Background="{StaticResource SearchBox_BackgroundBrush}"
-                                BorderBrush="{StaticResource SearchBox_BackgroundBrush}"
-                                BorderThickness="1">
-                                <TextBlock
-                                    x:Name="SearchIcon"
+                        <StackPanel>
+                            <Grid x:Name="LayoutGrid">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <ScrollViewer x:Name="PART_ContentHost" Grid.Column="0" />
+                                <Label
+                                    x:Name="SearchWatermarkLabel"
+                                    Margin="5,2,5,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Content="{TemplateBinding Tag}"
                                     FontSize="16"
-                                    Foreground="{StaticResource SearchBox_ForegroundBrush}"
-                                    Style="{StaticResource MetroButtonTextBlockDefaultStyle}"
-                                    Text="&#57492;" />
-                            </Border>
-                        </Grid>
+                                    Foreground="Gray"
+                                    Visibility="Collapsed" />
+                                <Border
+                                    x:Name="PART_CancelSearchIconBorder"
+                                    Grid.Column="1"
+                                    Style="{StaticResource SearchBox_IconBorderStyle}"
+                                    Visibility="Collapsed">
+                                    <TextBlock
+                                        x:Name="CancelSearchIcon"
+                                        Style="{StaticResource SearchBox_TextBlockHoverStyle}"
+                                        Text="&#59153;" />
+                                </Border>
+                                <Border
+                                    x:Name="PART_SearchIconBorder"
+                                    Grid.Column="2"
+                                    Style="{StaticResource SearchBox_IconBorderStyle}">
+                                    <TextBlock
+                                        x:Name="SearchIcon"
+                                        Style="{StaticResource SearchBox_TextBlockHoverStyle}"
+                                        Text="&#57492;" />
+                                </Border>
+                            </Grid>
+                        </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
@@ -489,26 +518,72 @@
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="Text" Value="" />
+                                <Condition Property="HasText" Value="False" />
                                 <Condition Property="IsFocused" Value="True" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.Setters>
                                 <Setter TargetName="SearchWatermarkLabel" Property="Foreground" Value="{StaticResource SearchBox_BorderBrush}" />
                             </MultiTrigger.Setters>
                         </MultiTrigger>
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Background" Value="White" />
-                            <Setter TargetName="PART_SearchIconBorder" Property="Background" Value="White" />
-                            <Setter TargetName="PART_SearchIconBorder" Property="BorderBrush" Value="White" />
-                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="HasText" Value="True" />
+                                <Condition Property="IsFocused" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_CancelSearchIconBorder" Property="Visibility" Value="Visible" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_SearchIconBorder" Property="IsMouseOver" Value="False" />
+                                <Condition Property="IsMouseLeftButtonDown" Value="False" />
+                                <Condition Property="IsFocused" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="White" />
+                                <Setter TargetName="PART_CancelSearchIconBorder" Property="Background" Value="{StaticResource SearchBox_IconBackgroundBrush}" />
+                                <Setter TargetName="PART_CancelSearchIconBorder" Property="BorderBrush" Value="{StaticResource SearchBox_IconBackgroundBrush}" />
+                                <Setter TargetName="PART_SearchIconBorder" Property="Background" Value="{StaticResource SearchBox_IconBackgroundBrush}" />
+                                <Setter TargetName="PART_SearchIconBorder" Property="BorderBrush" Value="{StaticResource SearchBox_IconBackgroundBrush}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
                         <Trigger Property="IsFocused" Value="False">
                             <Setter Property="Background" Value="{StaticResource SearchBox_BackgroundBrush}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="White" />
-                            <Setter TargetName="PART_SearchIconBorder" Property="Background" Value="White" />
-                            <Setter TargetName="PART_SearchIconBorder" Property="BorderBrush" Value="White" />
+                            <Setter TargetName="PART_CancelSearchIconBorder" Property="Background" Value="{StaticResource SearchBox_IconBackgroundBrush_MouseOver}" />
+                            <Setter TargetName="PART_CancelSearchIconBorder" Property="BorderBrush" Value="{StaticResource SearchBox_IconBackgroundBrush_MouseOver}" />
+                            <Setter TargetName="PART_SearchIconBorder" Property="Background" Value="{StaticResource SearchBox_IconBackgroundBrush_MouseOver}" />
+                            <Setter TargetName="PART_SearchIconBorder" Property="BorderBrush" Value="{StaticResource SearchBox_IconBackgroundBrush_MouseOver}" />
                         </Trigger>
+                        <Trigger SourceName="PART_CancelSearchIconBorder" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="CancelSearchIcon" Property="Foreground" Value="{StaticResource SearchBox_IconForegroundBrush_MouseOver}" />
+                        </Trigger>
+                        <Trigger SourceName="PART_SearchIconBorder" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="SearchIcon" Property="Foreground" Value="{StaticResource SearchBox_IconForegroundBrush_MouseOver}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_CancelSearchIconBorder" Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsMouseLeftButtonDown" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_CancelSearchIconBorder" Property="Background" Value="{StaticResource SearchBox_IconBackgroundBrush_MouseDown}" />
+                                <Setter TargetName="CancelSearchIcon" Property="Foreground" Value="{StaticResource SearchBox_IconForegroundBrush}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_SearchIconBorder" Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsMouseLeftButtonDown" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_SearchIconBorder" Property="Background" Value="{StaticResource SearchBox_IconBackgroundBrush_MouseDown}" />
+                                <Setter TargetName="SearchIcon" Property="Foreground" Value="{StaticResource SearchBox_IconForegroundBrush}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Foreground" Value="DimGray" />
                         </Trigger>
@@ -587,5 +662,25 @@
 
     <Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                From="0"
+                                To="1"
+                                Duration="0:0:0.4" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

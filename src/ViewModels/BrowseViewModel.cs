@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Data;
 using ApplManga.Models;
 using ApplManga.Utils.AppLogger.Core.Logger;
 using ApplManga.Utils.WebScraper.Core;
@@ -18,6 +20,34 @@ namespace ApplManga.ViewModels {
             set { _manga = value; }
         }
 
+        internal CollectionViewSource MangaCVS { get; set; }
+        public ICollectionView MangaCV {
+            get { return MangaCVS.View; }
+        }
+
+        private string _filter;
+        public string Filter {
+            get { return this._filter; }
+            set {
+                this._filter = value;
+                OnFilterChanged();
+            }
+        }
+
+        private void OnFilterChanged() {
+            MangaCVS.View.Refresh();
+        }
+
+        private void ApplyFilter(object sender, FilterEventArgs e) {
+            MangaList mangaVM = (MangaList)e.Item;
+
+            if (string.IsNullOrWhiteSpace(_filter) || _filter.Length == 0) {
+                e.Accepted = true;
+            } else {
+                e.Accepted = mangaVM.Title.Contains(Filter);
+            }
+        }
+
         public BrowseViewModel(string tabCaption, string tabIcon) {
             this.TabCaption = tabCaption;
             this.TabIcon = tabIcon;
@@ -32,6 +62,12 @@ namespace ApplManga.ViewModels {
                 }*/
 
                 _manga = new ObservableCollection<MangaList>(scraperRepo.GetEntireList());
+
+                MangaCVS = new CollectionViewSource();
+                MangaCVS.Source = Manga;
+                MangaCVS.Filter += ApplyFilter;
+
+                AppLogHelper.Log(AppLoggerBase.LogTarget.File, "Sample log entry");
             } catch (Exception ex) {
                 AppLogHelper.Log(AppLoggerBase.LogTarget.File, "Error running WebScraper: " + ex.Message);
                 Console.WriteLine(ex.InnerException);
