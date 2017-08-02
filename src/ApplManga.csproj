@@ -111,6 +111,7 @@
     <Compile Include="Utils\DAL\DbManager.cs" />
     <Compile Include="Models\GroupsData.cs" />
     <Compile Include="Utils\DAL\DbQueries.cs" />
+    <Compile Include="Utils\Extensions\CheckedObservableCollection.cs" />
     <Compile Include="Utils\WebScraper\Core\IHtmlDocLoader.cs" />
     <Compile Include="Utils\WebScraper\Core\IWebScraper.cs" />
     <Compile Include="Utils\WebScraper\Core\HtmlDocLoader.cs" />
@@ -119,6 +120,8 @@
     <Compile Include="Utils\WebScraper\Core\Scrapers\MangaFoxWebScraper.cs" />
     <Compile Include="Utils\WebScraper\Core\Scrapers\WebScraperBase.cs" />
     <Compile Include="Models\MangaList.cs" />
+    <Compile Include="Utils\Extensions\BulkObservableCollection.cs" />
+    <Compile Include="Utils\Extensions\CheckedListBoxItem.cs" />
     <Compile Include="ViewModels\BrowseViewModel.cs" />
     <Compile Include="ViewModels\DownloadsViewModel.cs" />
     <Compile Include="ViewModels\FavoritesViewModel.cs" />
@@ -236,6 +239,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\no_img.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\no_img.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Data.SQLite.Core.1.0.105.2\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.105.2\build\net45\System.Data.SQLite.Core.targets')" />

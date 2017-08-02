@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Data;
 using ApplManga.Models;
 using ApplManga.Utils.AppLogger.Core.Logger;
+using ApplManga.Utils.Extensions;
 using ApplManga.Utils.WebScraper.Core;
 using ApplManga.Utils.WebScraper.Core.Repos;
 using ApplManga.Utils.WebScraper.Core.Scrapers;
@@ -14,10 +15,13 @@ namespace ApplManga.ViewModels {
 
         public string TabIcon { get; private set; }
 
-        private ObservableCollection<MangaList> _manga;
-        public ObservableCollection<MangaList> Manga {
+        private CheckedObservableCollection<MangaList> _manga;
+        public CheckedObservableCollection<MangaList> Manga {
             get { return _manga; }
-            set { _manga = value; }
+            set {
+                _manga = value;
+                OnPropertyChanged("Manga");
+            }
         }
 
         internal CollectionViewSource MangaCVS { get; set; }
@@ -29,7 +33,7 @@ namespace ApplManga.ViewModels {
         public string Filter {
             get { return this._filter; }
             set {
-                this._filter = value;
+                _filter = value;
                 OnFilterChanged();
             }
         }
@@ -39,12 +43,12 @@ namespace ApplManga.ViewModels {
         }
 
         private void ApplyFilter(object sender, FilterEventArgs e) {
-            MangaList mangaVM = (MangaList)e.Item;
+            CheckedListBoxItem<MangaList> mangaVM = (CheckedListBoxItem<MangaList>)e.Item;
 
             if (string.IsNullOrWhiteSpace(_filter) || _filter.Length == 0) {
                 e.Accepted = true;
             } else {
-                e.Accepted = mangaVM.Title.Contains(Filter);
+                e.Accepted = mangaVM.Item.Title.Contains(Filter);
             }
         }
 
@@ -61,7 +65,9 @@ namespace ApplManga.ViewModels {
                     scraper.Scrape(htmlLoader, scraperRepo);
                 }*/
 
-                _manga = new ObservableCollection<MangaList>(scraperRepo.GetEntireList());
+                Manga = new CheckedObservableCollection<MangaList>();
+                //scraperRepo.GetEntireList().Distinct().ToList().ForEach(i => Manga.Add(i));
+                Manga.AddRange(scraperRepo.GetEntireList().ToList());
 
                 MangaCVS = new CollectionViewSource();
                 MangaCVS.Source = Manga;

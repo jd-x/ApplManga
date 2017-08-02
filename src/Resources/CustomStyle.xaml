@@ -593,18 +593,87 @@
         </Setter>
     </Style>
 
+    <!-- CHECKBOX TEMPLATE -->
+    <SolidColorBrush x:Key="CheckBox_BackgroundBrush" Color="White" />
+    <SolidColorBrush x:Key="CheckBox_BackgroundBrush_MouseOver" Color="Gainsboro" />
+    <SolidColorBrush x:Key="CheckBox_BackgroundBrush_Checked" Color="OrangeRed" />
+    <SolidColorBrush x:Key="CheckBox_BorderBrush" Color="Gainsboro" />
+    <SolidColorBrush x:Key="CheckBox_IconForegroundBrush" Color="White" />
+
+    <Style x:Key="CheckBoxStyle" TargetType="{x:Type CheckBox}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Border
+                                x:Name="PART_CheckBoxBorder"
+                                Width="22"
+                                Height="22"
+                                Background="{StaticResource CheckBox_BackgroundBrush}"
+                                BorderBrush="{StaticResource CheckBox_BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="0">
+                                <Grid>
+                                    <TextBlock
+                                        x:Name="CheckmarkIcon"
+                                        FontSize="16"
+                                        Foreground="{StaticResource CheckBox_IconForegroundBrush}"
+                                        SnapsToDevicePixels="False"
+                                        Style="{StaticResource MetroButtonTextBlockDefaultStyle}"
+                                        Text="&#59198;"
+                                        Visibility="Collapsed" />
+                                </Grid>
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter
+                            Margin="0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            RecognizesAccessKey="True" />
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckmarkIcon" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_CheckBoxBorder" Property="Background" Value="{StaticResource CheckBox_BackgroundBrush_Checked}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_CheckBoxBorder" Property="Background" Value="{StaticResource CheckBox_BackgroundBrush_MouseOver}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True" />
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_CheckBoxBorder" Property="Background" Value="{StaticResource CheckBox_BackgroundBrush_Checked}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- LISTBOX TEMPLATE -->
-    <BitmapImage x:Key="NoImage" UriSource="../../Resources/Images/no_img.jpg" />
+    <BitmapImage x:Key="NoImage" UriSource="pack://application:,,,/Resources/Images/no_img.png" />
 
     <Style x:Key="ListBoxStyle" TargetType="{x:Type ListBox}">
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Padding" Value="0" />
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Grid>
+                    <Grid x:Name="LayoutGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="44" />
+                        </Grid.RowDefinitions>
                         <Border
                             x:Name="PART_ImageBorder"
+                            Grid.Row="0"
                             Margin="4"
                             BorderBrush="Gainsboro"
                             BorderThickness="1">
@@ -615,12 +684,13 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                             <Image
+                                x:Name="PART_Image"
                                 Width="150"
                                 Height="215"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 SnapsToDevicePixels="True"
-                                Source="{Binding ImagePath, TargetNullValue={StaticResource NoImage}}"
+                                Source="{Binding Path=Item.ImagePath, TargetNullValue={StaticResource NoImage}}"
                                 Stretch="Fill"
                                 UseLayoutRounding="True">
                                 <Image.OpacityMask>
@@ -631,37 +701,62 @@
                                 </Image.OpacityMask>
                             </Image>
                         </Border>
+                        <CheckBox
+                            x:Name="PART_CheckBox"
+                            Grid.Row="0"
+                            Margin="6"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                            Style="{StaticResource CheckBoxStyle}"
+                            Visibility="Visible" />
                         <TextBlock
-                            Width="124"
+                            x:Name="PART_TitleTextBlock"
+                            Grid.Row="1"
+                            Width="150"
                             MaxHeight="40"
-                            Margin="4,0,4,8"
-                            Padding="2"
+                            Margin="2,2,2,2"
+                            Padding="4,0,4,0"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom"
+                            VerticalAlignment="Top"
                             Background="Transparent"
                             Block.TextAlignment="Left"
                             FontSize="12"
-                            Foreground="White"
-                            Text="{Binding Title}"
+                            Foreground="Black"
+                            Text="{Binding Path=Item.Title}"
                             TextElement.FontStretch="Condensed"
-                            TextElement.FontWeight="Bold"
                             TextTrimming="CharacterEllipsis"
                             TextWrapping="Wrap" />
                     </Grid>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=PART_CheckBox, Path=IsChecked}" Value="True">
+                            <Setter TargetName="LayoutGrid" Property="Background" Value="OrangeRed" />
+                            <Setter TargetName="PART_TitleTextBlock" Property="Foreground" Value="{StaticResource SearchBox_IconForegroundBrush}" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <v:VirtualizingWrapPanel ItemHeight="215" ItemWidth="150" />
+                    <v:VirtualizingWrapPanel ItemHeight="259" ItemWidth="150" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+    <!-- LISTBOXITEM TEMPLATE -->
     <Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Padding" Value="-2,1,-2,1" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <ContentPresenter />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TranslateTransform />

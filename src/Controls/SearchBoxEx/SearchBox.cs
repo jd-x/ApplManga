@@ -112,7 +112,7 @@ namespace ApplManga.Controls.SearchBoxEx {
 
             Border iconBorder = sender as Border;
             if (iconBorder.Equals(cancelSearchIconBorder) && HasText) {
-                this.Text = "";
+                this.Text = string.Empty;
             }
 
             /*if (HasText && SearchMode == SearchMode.Instant) {
@@ -132,7 +132,7 @@ namespace ApplManga.Controls.SearchBoxEx {
 
         protected override void OnKeyDown(KeyEventArgs e) {
             if ((e.Key == Key.Escape) && (SearchMode == SearchMode.Instant)) {
-                this.Text = "";
+                this.Text = string.Empty;
             } else if (((e.Key == Key.Return) || (e.Key == Key.Enter)) && SearchMode == SearchMode.Regular) {
                 RaiseSearchEvent();
             } else {
