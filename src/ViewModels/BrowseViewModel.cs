@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows.Input;
 using ApplManga.Models;
 using ApplManga.Utils.AppLogger.Core.Logger;
 using ApplManga.Utils.Extensions;
@@ -14,6 +15,8 @@ namespace ApplManga.ViewModels {
         public string TabCaption { get; private set; }
 
         public string TabIcon { get; private set; }
+
+        public ICommand ButtonCommand { get; set; }
 
         private CheckedObservableCollection<MangaList> _manga;
         public CheckedObservableCollection<MangaList> Manga {
@@ -31,7 +34,7 @@ namespace ApplManga.ViewModels {
 
         private string _filter;
         public string Filter {
-            get { return this._filter; }
+            get { return _filter; }
             set {
                 _filter = value;
                 OnFilterChanged();
@@ -52,9 +55,20 @@ namespace ApplManga.ViewModels {
             }
         }
 
+        private void ButtonClick() {
+            var checkedItems = Manga.Where(item => item.IsChecked == true);
+
+            foreach (var obj in checkedItems) {
+                AppLogHelper.Log(AppLoggerBase.LogTarget.File, string.Concat(obj.Item.Title," :: ",obj.Item.Site," :: ",obj.Item.PubStatus));
+            }
+        }
+
         public BrowseViewModel(string tabCaption, string tabIcon) {
-            this.TabCaption = tabCaption;
-            this.TabIcon = tabIcon;
+            TabCaption = tabCaption;
+            TabIcon = tabIcon;
+
+            // Add button click functionality
+            ButtonCommand = new RelayCommand(obj => ButtonClick());
 
             try {
                 var htmlLoader = new HtmlDocLoader();

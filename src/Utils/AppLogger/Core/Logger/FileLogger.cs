@@ -20,7 +20,7 @@ namespace ApplManga.Utils.AppLogger.Core.Logger {
             }
 
             // Limit only to 10 log files
-            foreach (var logFile in new DirectoryInfo(logFolderPath).GetFiles().OrderByDescending(x => x.LastWriteTime).Skip(10)) {
+            foreach (var logFile in new DirectoryInfo(logFolderPath).GetFiles().OrderByDescending(x => x.LastWriteTime).Skip(9)) {
                 logFile.Delete();
             }
         }

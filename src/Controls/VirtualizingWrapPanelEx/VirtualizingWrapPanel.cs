@@ -8,8 +8,10 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace ApplManga.Controls.VirtualizingWrapPanel {
+    // Virtualizing wrap panel adapted from https://stackoverflow.com/questions/5106095/virtualizing-wrap-panel-wpf-free-solution
+
     public class VirtualizingWrapPanel : VirtualizingPanel, IScrollInfo {
-        private const double ScrollLineAmount = 16.0;
+        private const double ScrollLineAmount = 16.0;   // Default is 16
 
         private Size _extentSize;
         private Size _viewportSize;
@@ -17,14 +19,9 @@ namespace ApplManga.Controls.VirtualizingWrapPanel {
         private ItemsControl _itemsControl;
         private readonly Dictionary<UIElement, Rect> _childLayouts = new Dictionary<UIElement, Rect>();
 
-        public static readonly DependencyProperty ItemWidthProperty =
-            DependencyProperty.Register("ItemWidth", typeof(double), typeof(VirtualizingWrapPanel), new PropertyMetadata(1.0, HandleItemDimensionChanged));
-
-        public static readonly DependencyProperty ItemHeightProperty =
-            DependencyProperty.Register("ItemHeight", typeof(double), typeof(VirtualizingWrapPanel), new PropertyMetadata(1.0, HandleItemDimensionChanged));
-
-        private static readonly DependencyProperty VirtualItemIndexProperty =
-            DependencyProperty.RegisterAttached("VirtualItemIndex", typeof(int), typeof(VirtualizingWrapPanel), new PropertyMetadata(-1));
+        public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(VirtualizingWrapPanel), new PropertyMetadata(1.0, HandleItemDimensionChanged));
+        public static readonly DependencyProperty ItemHeightProperty = DependencyProperty.Register("ItemHeight", typeof(double), typeof(VirtualizingWrapPanel), new PropertyMetadata(1.0, HandleItemDimensionChanged));
+        private static readonly DependencyProperty VirtualItemIndexProperty = DependencyProperty.RegisterAttached("VirtualItemIndex", typeof(int), typeof(VirtualizingWrapPanel), new PropertyMetadata(-1));
         private IRecyclingItemContainerGenerator _itemsGenerator;
 
         private bool _isInMeasure;
@@ -364,20 +361,13 @@ namespace ApplManga.Controls.VirtualizingWrapPanel {
             return bottomChild - (bottomView - topView);
         }
 
-
         public ItemLayoutInfo GetVisibleItemsRange() {
             return GetLayoutInfo(_viewportSize, ItemHeight, GetExtentInfo(_viewportSize, ItemHeight));
         }
 
-        public bool CanVerticallyScroll {
-            get;
-            set;
-        }
+        public bool CanVerticallyScroll { get; set; }
 
-        public bool CanHorizontallyScroll {
-            get;
-            set;
-        }
+        public bool CanHorizontallyScroll { get; set; }
 
         public double ExtentWidth {
             get { return _extentSize.Width; }

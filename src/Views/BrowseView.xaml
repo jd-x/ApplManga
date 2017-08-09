@@ -16,13 +16,14 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock
             x:Name="TitleBox"
             Grid.Row="0"
             Grid.Column="0"
-            Margin="10,5,2,5"
+            Margin="30,5,2,5"
             FontSize="35"
             FontStretch="Condensed"
             FontWeight="Light"
@@ -36,12 +37,19 @@
             SearchMode="Instant"
             Tag="Search"
             Text="{Binding Filter}" />
+        <Button
+            Name="ShowSelectedItem"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="4"
+            Command="{Binding ButtonCommand}">
+            Return selected item
+        </Button>
         <ListBox
             Name="MangaList"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.ColumnSpan="2"
-            Margin="2,10,2,0"
-            ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+            Margin="20,10,10,0"
             ItemsSource="{Binding MangaCV}"
             Style="{StaticResource ListBoxStyle}" />
     </Grid>

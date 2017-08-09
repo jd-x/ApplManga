@@ -11,10 +11,10 @@ namespace ApplManga.ViewModels {
         public MainViewModel(Dispatcher dispatcher) {
             this._dispatcher = dispatcher;
 
-            TabItemCollection.Add(new DownloadsViewModel("Downloads", "DesktopDownload"));
-            TabItemCollection.Add(new BrowseViewModel("Browse Manga", "Book"));
-            TabItemCollection.Add(new FavoritesViewModel("Favorites", "Star"));
-            TabItemCollection.Add(new FoldersViewModel("Manage Folders", "FileDirectory"));
+            TabItemCollection.Add(new DownloadsViewModel("DOWNLOADS", "DesktopDownload"));
+            TabItemCollection.Add(new BrowseViewModel("BROWSE MANGA", "Book"));
+            TabItemCollection.Add(new FavoritesViewModel("FAVORITES", "Star"));
+            TabItemCollection.Add(new FoldersViewModel("MANAGE FOLDERS", "FileDirectory"));
 
             SelectedTabIndex = 0;
         }

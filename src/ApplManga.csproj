@@ -127,6 +127,7 @@
     <Compile Include="ViewModels\FavoritesViewModel.cs" />
     <Compile Include="ViewModels\FoldersViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\BrowseView.xaml.cs">
       <DependentUpon>BrowseView.xaml</DependentUpon>
