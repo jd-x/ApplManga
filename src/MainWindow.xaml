@@ -19,7 +19,7 @@
     <Grid Style="{StaticResource GridDefaultStyle}">
         <t:PersistentTabControl
             DisplayMemberPath="TabCaption"
-            ItemsSource="{Binding TabItemCollection}"
+            ItemsSource="{Binding PageViewModels}"
             Style="{StaticResource TabControlStyle}" />
     </Grid>
 </Window>

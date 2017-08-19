@@ -1,12 +1,16 @@
 ﻿namespace ApplManga.ViewModels {
-    public class DownloadsViewModel : ViewModelBase {
-        public DownloadsViewModel(string tabCaption, string tabIcon) {
-            this.TabCaption = tabCaption;
-            this.TabIcon = tabIcon;
+    public class DownloadsViewModel : ViewModelBase, IPageViewModel {
+        public string Name {
+            get { return "DOWNLOADS"; }
         }
 
         public string TabCaption { get; private set; }
 
         public string TabIcon { get; private set; }
+
+        public DownloadsViewModel(string tabIcon) {
+            TabCaption = Name;
+            TabIcon = tabIcon;
+        }
     }
 }

@@ -1,12 +1,16 @@
 ﻿namespace ApplManga.ViewModels {
-    public class FoldersViewModel : ViewModelBase {
-        public FoldersViewModel(string tabCaption, string tabIcon) {
-            this.TabCaption = tabCaption;
-            this.TabIcon = tabIcon;
+    public class FoldersViewModel : ViewModelBase, IPageViewModel {
+        public string Name {
+            get { return "MANAGE FOLDERS"; }
         }
 
         public string TabCaption { get; private set; }
 
         public string TabIcon { get; private set; }
+
+        public FoldersViewModel(string tabIcon) {
+            TabCaption = Name;
+            TabIcon = tabIcon;
+        }
     }
 }

@@ -9,24 +9,24 @@ namespace ApplManga {
     public partial class MainWindow : Window {
         public MainWindow() {
             // Custom window wrapper bindings
-            this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, this.OnCloseWindow));
-            this.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, this.OnRestoreWindow, this.OnCanResizeWindow));
-            this.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, this.OnMaximizeWindow, this.OnCanResizeWindow));
-            this.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, this.OnMinimizeWindow, this.OnCanMinimizeWindow));
+            CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, OnCloseWindow));
+            CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, OnRestoreWindow, OnCanResizeWindow));
+            CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, OnMaximizeWindow, OnCanResizeWindow));
+            CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, OnMinimizeWindow, OnCanMinimizeWindow));
 
-            this.DataContext = new MainViewModel(this.Dispatcher);
+            DataContext = new MainViewModel(this.Dispatcher);
             InitializeComponent();
 
             // Enables dragging for borderless forms
-            //this.MouseLeftButtonDown += delegate { this.DragMove(); };
+            //MouseLeftButtonDown += delegate { DragMove(); };
         }
 
         private void OnCanMinimizeWindow(object sender, CanExecuteRoutedEventArgs e) {
-            e.CanExecute = this.ResizeMode != ResizeMode.NoResize;
+            e.CanExecute = ResizeMode != ResizeMode.NoResize;
         }
 
         private void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e) {
-            e.CanExecute = this.ResizeMode == ResizeMode.CanResize || this.ResizeMode == ResizeMode.CanResizeWithGrip;
+            e.CanExecute = ResizeMode == ResizeMode.CanResize || this.ResizeMode == ResizeMode.CanResizeWithGrip;
         }
 
         private void OnMinimizeWindow(object sender, ExecutedRoutedEventArgs e) {

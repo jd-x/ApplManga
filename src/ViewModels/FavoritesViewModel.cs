@@ -1,12 +1,16 @@
 ﻿namespace ApplManga.ViewModels {
-    public class FavoritesViewModel : ViewModelBase {
-        public FavoritesViewModel(string tabCaption, string tabIcon) {
-            this.TabCaption = tabCaption;
-            this.TabIcon = tabIcon;
+    public class FavoritesViewModel : ViewModelBase, IPageViewModel {
+        public string Name {
+            get { return "FAVORITES"; }
         }
 
         public string TabCaption { get; private set; }
 
         public string TabIcon { get; private set; }
+
+        public FavoritesViewModel(string tabIcon) {
+            TabCaption = Name;
+            TabIcon = tabIcon;
+        }
     }
 }

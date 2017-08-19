@@ -15,9 +15,9 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="57" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="*" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock
             x:Name="TitleBox"
@@ -41,16 +41,21 @@
             Name="ShowSelectedItem"
             Grid.Row="1"
             Grid.Column="1"
-            Margin="4"
-            Command="{Binding ButtonCommand}">
-            Return selected item
+            Width="100"
+            Height="40"
+            Margin="0,0,8,0"
+            HorizontalAlignment="Right"
+            Command="{Binding DataContext.DisplayInfoView, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}, Mode=OneWay}">
+            View Info
         </Button>
         <ListBox
             Name="MangaList"
             Grid.Row="2"
+            Grid.RowSpan="2"
             Grid.ColumnSpan="2"
             Margin="20,10,10,0"
             ItemsSource="{Binding MangaCV}"
+            SelectedItem="{Binding SelectedTitle}"
             Style="{StaticResource ListBoxStyle}" />
     </Grid>
 </UserControl>

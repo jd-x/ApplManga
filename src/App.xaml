@@ -8,8 +8,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Resources/CustomColors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Resources/CustomFonts.xaml" />
-                <ResourceDictionary Source="/Resources/CustomStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Resources/CustomImages.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Resources/CustomStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

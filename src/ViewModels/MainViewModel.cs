@@ -1,22 +1,43 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace ApplManga.ViewModels {
     public class MainViewModel : ViewModelBase {
         private Dispatcher _dispatcher;
 
-        private ObservableCollection<ViewModelBase> _tabItems = new ObservableCollection<ViewModelBase>();
-        public ObservableCollection<ViewModelBase> TabItemCollection { get { return _tabItems; } }
+        private ICommand _changeViewCommand;
+        public ICommand ChangeViewCommand {
+            get {
+                if (_changeViewCommand == null) {
+                    _changeViewCommand = new RelayCommand(p => ChangeViewModel((IPageViewModel)p), p => p is IPageViewModel);
+                }
 
-        public MainViewModel(Dispatcher dispatcher) {
-            this._dispatcher = dispatcher;
+                return _changeViewCommand;
+            }
+        }
 
-            TabItemCollection.Add(new DownloadsViewModel("DOWNLOADS", "DesktopDownload"));
-            TabItemCollection.Add(new BrowseViewModel("BROWSE MANGA", "Book"));
-            TabItemCollection.Add(new FavoritesViewModel("FAVORITES", "Star"));
-            TabItemCollection.Add(new FoldersViewModel("MANAGE FOLDERS", "FileDirectory"));
+        private IPageViewModel _currentViewModel;
+        public IPageViewModel CurrentViewModel {
+            get { return _currentViewModel; }
+            set {
+                if (_currentViewModel != value) {
+                    _currentViewModel = value;
+                    RaisePropertyChanged("CurrentViewModel");
+                }
+            }
+        }
 
-            SelectedTabIndex = 0;
+        private List<IPageViewModel> _pageViewModels;
+        public List<IPageViewModel> PageViewModels {
+            get {
+                if (_pageViewModels == null) {
+                    _pageViewModels = new List<IPageViewModel>();
+                }
+
+                return _pageViewModels;
+            }
         }
 
         private int _selectedTabIndex;
@@ -27,6 +48,27 @@ namespace ApplManga.ViewModels {
                     _selectedTabIndex = value;
                 }
             }
+        }
+
+        private void ChangeViewModel(IPageViewModel viewModel) {
+            if (!PageViewModels.Contains(viewModel)) {
+                PageViewModels.Add(viewModel);
+            }
+
+            CurrentViewModel = PageViewModels.FirstOrDefault(vm => vm == viewModel);
+        }
+
+        public MainViewModel(Dispatcher dispatcher) {
+            _dispatcher = dispatcher;
+
+            PageViewModels.Add(new DownloadsViewModel("DesktopDownload"));
+            PageViewModels.Add(new BrowseMainViewModel("Book"));
+            //PageViewModels.Add(new BrowseViewModel("Book"));
+            //PageViewModels.Add(new InfoViewModel("Info"));
+            PageViewModels.Add(new FavoritesViewModel("Heart"));
+            PageViewModels.Add(new FoldersViewModel("FileDirectory"));
+
+            SelectedTabIndex = 0;
         }
     }
 }

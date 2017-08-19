@@ -11,10 +11,16 @@ using ApplManga.Utils.WebScraper.Core.Repos;
 using ApplManga.Utils.WebScraper.Core.Scrapers;
 
 namespace ApplManga.ViewModels {
-    public class BrowseViewModel : ViewModelBase {
-        public string TabCaption { get; private set; }
+    public class BrowseViewModel : ViewModelBase, IPageViewModel {
+        public string Name {
+            get { return "BROWSE MANGA"; }
+        }
 
-        public string TabIcon { get; private set; }
+        private string _selectedTitle;
+        public string SelectedTitle {
+            get { return _selectedTitle; }
+            set { _selectedTitle = value; }
+        }
 
         public ICommand ButtonCommand { get; set; }
 
@@ -23,7 +29,7 @@ namespace ApplManga.ViewModels {
             get { return _manga; }
             set {
                 _manga = value;
-                OnPropertyChanged("Manga");
+                RaisePropertyChanged("Manga");
             }
         }
 
@@ -59,16 +65,14 @@ namespace ApplManga.ViewModels {
             var checkedItems = Manga.Where(item => item.IsChecked == true);
 
             foreach (var obj in checkedItems) {
-                AppLogHelper.Log(AppLoggerBase.LogTarget.File, string.Concat(obj.Item.Title," :: ",obj.Item.Site," :: ",obj.Item.PubStatus));
+                AppLogHelper.Log(AppLoggerBase.LogTarget.File, string.Concat(obj.Item.Title, " :: ", obj.Item.Site, " :: ", obj.Item.PubStatus));
             }
         }
 
-        public BrowseViewModel(string tabCaption, string tabIcon) {
-            TabCaption = tabCaption;
-            TabIcon = tabIcon;
-
+        public BrowseViewModel() {
             // Add button click functionality
-            ButtonCommand = new RelayCommand(obj => ButtonClick());
+            //ButtonCommand = new RelayCommand(obj => ButtonClick());
+            //ButtonCommand = new RelayCommand(obj => new InfoViewModel("Info"));
 
             try {
                 var htmlLoader = new HtmlDocLoader();

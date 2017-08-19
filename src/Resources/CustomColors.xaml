@@ -1,0 +1,46 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ApplManga.Resources">
+
+    <SolidColorBrush x:Key="MetroFGBrush" Color="#FF7A7A7A" />
+    <SolidColorBrush x:Key="MetroHighlightBrush" Color="#FFE6E6E6" />
+    <SolidColorBrush x:Key="MetroSelectedBrush" Color="#FFCCCCCC" />
+    <SolidColorBrush x:Key="MetroButtonCloseBrush" Color="#FFE81123" />
+
+    <SolidColorBrush x:Key="TabContentBGBrush" Color="#FFF7F7F7" />
+    <SolidColorBrush x:Key="TabControlBGBrush" Color="White" />
+
+    <SolidColorBrush x:Key="TabControl_HeaderPanelBGBrush" Color="#F2F2F0" />
+    <SolidColorBrush x:Key="TabControl_ContentPanelBGBrush" Color="White" />
+
+    <SolidColorBrush x:Key="TabControl_TabItemForegroundBrush" Color="#AB9EB5" />
+    <SolidColorBrush x:Key="TabControl_TabItemForegroundBrush_MouseOver" Color="#FF5E3A" />
+    <SolidColorBrush x:Key="TabControl_TabItemForegroundBrush_Selected" Color="#252D4E" />
+
+    <SolidColorBrush x:Key="TabItemPanelBGBrush" Color="{DynamicResource Gray8}" />
+    <SolidColorBrush x:Key="TabItemIsMouseOverBGBrush" Color="#40FF4D0A" />
+    <SolidColorBrush x:Key="TabItemIsMouseOverFGBrush" Color="#FF5E3A" />
+    <SolidColorBrush x:Key="TabItemIsNotSelectedFGBrush" Color="#FFBCBCBC" />
+    <SolidColorBrush x:Key="TabItemIsSelectedBGBrush" Color="{DynamicResource Gray2}" />
+    <SolidColorBrush x:Key="TabItemIsSelectedFGBrush" Color="Black" />
+    <SolidColorBrush x:Key="TabItemSelectorBrush" Color="#FF5E3A" />
+
+    <SolidColorBrush x:Key="SearchBox_BorderBrush" Color="Gainsboro" />
+    <SolidColorBrush x:Key="SearchBox_BackgroundBrush" Color="#FFF7F7F7" />
+    <SolidColorBrush x:Key="SearchBox_BackgroundBrush_MouseOver" Color="White" />
+    <SolidColorBrush x:Key="SearchBox_ForegroundBrush" Color="Black" />
+    <SolidColorBrush x:Key="SearchBox_IconBackgroundBrush" Color="White" />
+    <SolidColorBrush x:Key="SearchBox_IconBackgroundBrush_MouseOver" Color="White" />
+    <SolidColorBrush x:Key="SearchBox_IconBackgroundBrush_MouseDown" Color="#FF5E3A" />
+    <SolidColorBrush x:Key="SearchBox_IconForegroundBrush" Color="White" />
+    <SolidColorBrush x:Key="SearchBox_IconForegroundBrush_MouseOver" Color="#FF5E3A" />
+
+    <SolidColorBrush x:Key="CheckBox_BackgroundBrush" Color="White" />
+    <SolidColorBrush x:Key="CheckBox_BackgroundBrush_MouseOver" Color="Gainsboro" />
+    <SolidColorBrush x:Key="CheckBox_BackgroundBrush_Checked" Color="#FF5E3A" />
+    <SolidColorBrush x:Key="CheckBox_BorderBrush" Color="Gainsboro" />
+    <SolidColorBrush x:Key="CheckBox_IconForegroundBrush" Color="White" />
+
+    <SolidColorBrush x:Key="ListBox_BackgroundBrush_Checked" Color="#FF5E3A" />
+</ResourceDictionary>
