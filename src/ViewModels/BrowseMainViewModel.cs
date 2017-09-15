@@ -75,12 +75,22 @@ namespace ApplManga.ViewModels {
             }
         }
 
+        private void BrowseViewModel_OnSelectionChange(string selection) {
+            InfoViewModel infoViewModel = (InfoViewModel)BrowseViewModels[1];
+            infoViewModel.SelectedTitle = selection;
+        }
+
         public BrowseMainViewModel(string tabIcon) {
             TabCaption = Name;
             TabIcon = tabIcon;
 
-            BrowseViewModels.Add(new BrowseViewModel());
-            BrowseViewModels.Add(new InfoViewModel());
+            BrowseViewModel browseViewModel = new BrowseViewModel();
+            InfoViewModel infoViewModel = new InfoViewModel();
+
+            browseViewModel.OnSelectionChange += BrowseViewModel_OnSelectionChange;
+
+            BrowseViewModels.Add(browseViewModel);
+            BrowseViewModels.Add(infoViewModel);
 
             CurrentViewModel = BrowseViewModels[0];
         }

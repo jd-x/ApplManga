@@ -179,5 +179,15 @@ namespace ApplManga.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] segmdl2 {
+            get {
+                object obj = ResourceManager.GetObject("segmdl2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

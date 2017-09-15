@@ -14,7 +14,6 @@ namespace ApplManga.Utils.Extensions {
             set {
                 _item = value;
                 RaisePropertyChanged("Item");
-                //OnPropertyChanged("Item");
             }
         }
 
@@ -25,7 +24,6 @@ namespace ApplManga.Utils.Extensions {
                 _isChecked = value;
                 CheckChanged();
                 RaisePropertyChanged("IsChecked");
-                //OnPropertyChanged("IsChecked");
             }
         }
 

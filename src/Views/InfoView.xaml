@@ -34,7 +34,8 @@
                 Name="TitleTextBlock"
                 FontSize="36"
                 FontWeight="Thin"
-                Text="{Binding ElementName=BrowseView.MangaList, Path=SelectedItem.GivenName}" />
+                Text="{Binding SelectedTitle}"
+                TextTrimming="CharacterEllipsis" />
             <TextBlock
                 Name="AuthorTextBlock"
                 FontSize="14"
@@ -47,10 +48,11 @@
                 Text="2017 ~ Ongoing ~ 26 chapters" />
             <TextBlock
                 Name="SummaryTextBlock"
+                MaxHeight="90"
                 Margin="0,10,0,0"
                 FontSize="14"
                 FontWeight="Regular"
-                Text="Lorem ipsum dolor sir amet short description text doesn't actualy have anything important just a text placeholder yay is it long enough or should I add more so that I could occupy at least three lines worth of text okay I think this is enough"
+                Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                 TextTrimming="WordEllipsis"
                 TextWrapping="Wrap" />
             <Button
@@ -58,6 +60,7 @@
                 Height="40"
                 Margin="0,10,0,0"
                 HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
                 Command="{Binding DataContext.DisplayBrowseView, RelativeSource={RelativeSource AncestorType={x:Type DockPanel}}, Mode=OneWay}">
                 Back
             </Button>

@@ -109,6 +109,7 @@
     <Compile Include="Utils\AppLogger\Core\Logger\DbLogger.cs" />
     <Compile Include="Utils\AppLogger\Core\Logger\EventLogger.cs" />
     <Compile Include="Utils\AppLogger\Core\Logger\FileLogger.cs" />
+    <Compile Include="Utils\Base\Constants.cs" />
     <Compile Include="Utils\DAL\DbManager.cs" />
     <Compile Include="Models\GroupsData.cs" />
     <Compile Include="Utils\DAL\DbQueries.cs" />
@@ -163,19 +164,51 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\CustomFonts.xaml">
+    <Page Include="Resources\Fonts\Fonts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\CustomColors.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\CustomImages.xaml">
+    <Page Include="Resources\ResourceCollection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\CustomStyle.xaml">
+    <Page Include="Resources\Styles\CheckBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\PopupStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\MetroSymbolStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\SearchBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Images\Images.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\ScrollBarStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\MainWindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\BrowseViewStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,6 +266,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Fonts\segoe\segmdl2.ttf" />
     <Resource Include="Resources\Fonts\roboto\Roboto-Black.ttf" />
     <Resource Include="Resources\Fonts\roboto\Roboto-BlackItalic.ttf" />
     <Resource Include="Resources\Fonts\roboto\Roboto-Bold.ttf" />
@@ -261,9 +295,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Styles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\no_img.jpg" />
   </ItemGroup>

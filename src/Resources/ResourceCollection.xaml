@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- DEFAULT CONTROLS' STYLES -->
+        <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ComboBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Resources/Styles/MetroSymbolStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Resources/Styles/CheckBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Resources/Styles/PopupStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Resources/Styles/SearchBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ScrollBarStyle.xaml" />
+        <!-- VIEWS' STYLES -->
+        <ResourceDictionary Source="pack://application:,,,/Resources/MainWindowStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Resources/BrowseViewStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

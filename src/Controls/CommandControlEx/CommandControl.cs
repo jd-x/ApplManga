@@ -3,7 +3,14 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace ApplManga.Controls.CommandControlEx {
+    public enum SelectMode {
+        Single,
+        Multiple,
+    }
+
     public partial class CommandControl : UserControl {
+        public static DependencyProperty SelectModeProperty = DependencyProperty.Register("SelectMode", typeof(SelectMode), typeof(CommandControl), new PropertyMetadata(SelectMode.Single));
+
         public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(CommandControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
         public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register("CommandParameter", typeof(object), typeof(CommandControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
 

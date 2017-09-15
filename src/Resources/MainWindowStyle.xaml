@@ -1,0 +1,423 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:ApplManga.Controls.CommandControlEx"
+    xmlns:conv="clr-namespace:ApplManga.Converters"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:viewModels="clr-namespace:ApplManga.ViewModels"
+    xmlns:views="clr-namespace:ApplManga.Views">
+
+    <DropShadowEffect
+        x:Key="z-depth3"
+        BlurRadius="14"
+        Direction="0"
+        ShadowDepth="4.5"
+        Color="#80BBBBBB" />
+
+    <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
+
+    <!-- METRO BUTTON STYLE -->
+    <ControlTemplate x:Key="MetroBaseButtonTemplate" TargetType="{x:Type Button}">
+        <Grid Background="{TemplateBinding Background}">
+            <ContentPresenter
+                Name="BaseButtonContentPresenter"
+                Margin="{TemplateBinding Padding}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                RecognizesAccessKey="True"
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource MetroFGBrush}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Foreground" Value="{StaticResource MetroFGBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource MetroSelectedBrush}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="BaseButtonContentPresenter" Property="Opacity" Value="0.5" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- DEFAULT TITLE BAR BUTTON STYLE -->
+    <Style x:Key="MetroWindowButtonDefaultStyle" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Background" Value="{StaticResource MetroHighlightBrush}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template" Value="{StaticResource MetroBaseButtonTemplate}" />
+    </Style>
+
+    <!-- FOR CLOSE BUTTON ONLY -->
+    <Style
+        x:Key="MetroWindowButtonCloseStyle"
+        BasedOn="{StaticResource MetroWindowButtonDefaultStyle}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource MetroButtonCloseBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter
+                            Name="BaseButtonContentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="{StaticResource MetroFGBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#FFF1707A" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="BaseButtonContentPresenter" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- METRO BUTTON TEXTBLOCK DEFAULT STYLE -->
+    <Style x:Key="MetroButtonTextBlockDefaultStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <Setter Property="FontSize" Value="10" />
+    </Style>
+
+    <!-- METRO WINDOW CONTROL VIEWBOX DEFAULT STYLE -->
+    <Style x:Key="MetroViewboxDefaultStyle" TargetType="{x:Type Viewbox}">
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Stretch" Value="Fill" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <!-- WINDOW TEMPLATE -->
+    <Style x:Key="MetroWindowStyle" TargetType="{x:Type Window}">
+        <Setter Property="Foreground" Value="{StaticResource MetroFGBrush}" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="TextOptions.TextHintingMode" Value="Fixed" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border
+                        Name="MetroWindowBorder"
+                        Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}"
+                        Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Border BorderThickness="0">
+                                <AdornerDecorator>
+                                    <Grid Name="MetroTitleBarLayoutRoot">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="36" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="15" />
+                                        </Grid.RowDefinitions>
+                                        <ContentPresenter
+                                            Grid.Row="1"
+                                            Grid.RowSpan="2"
+                                            Margin="7" />
+                                        <Rectangle
+                                            Name="MetroHeaderBG"
+                                            Grid.Row="0"
+                                            Height="36"
+                                            VerticalAlignment="Top"
+                                            Fill="{TemplateBinding Background}" />
+                                        <!-- METRO BUTTONS -->
+                                        <StackPanel
+                                            Grid.Row="0"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal"
+                                            WindowChrome.IsHitTestVisibleInChrome="True">
+                                            <Button
+                                                Name="MinimizeWindowButton"
+                                                Width="46"
+                                                Height="36"
+                                                Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}"
+                                                Style="{StaticResource MetroWindowButtonDefaultStyle}"
+                                                ToolTip="Minimize">
+                                                <Button.Content>
+                                                    <TextBlock Text="&#xE921;" Style="{DynamicResource MetroSymbolStyle}" Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" />
+                                                </Button.Content>
+                                                <!--Path
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Data="{StaticResource MinimizeWindowIcon}"
+                                                    Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                    SnapsToDevicePixels="True"
+                                                    UseLayoutRounding="True" /-->
+                                            </Button>
+                                            <Grid Margin="1,0,1,0">
+                                                <Button
+                                                    Name="RestoreWindowButton"
+                                                    Width="46"
+                                                    Height="36"
+                                                    Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}"
+                                                    Style="{StaticResource MetroWindowButtonDefaultStyle}"
+                                                    ToolTip="Restore Down"
+                                                    Visibility="Collapsed">
+                                                    <Button.Content>
+                                                        <TextBlock Text="&#xE923;" Style="{DynamicResource MetroSymbolStyle}" Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" />
+                                                    </Button.Content>
+                                                    <!--Path
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Data="{StaticResource RestoreWindowIcon}"
+                                                        Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                        SnapsToDevicePixels="True"
+                                                        UseLayoutRounding="False" /-->
+                                                </Button>
+                                                <Button
+                                                    Name="MaximizeWindowButton"
+                                                    Width="46"
+                                                    Height="36"
+                                                    Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}"
+                                                    Style="{StaticResource MetroWindowButtonDefaultStyle}"
+                                                    ToolTip="Maximize">
+                                                    <Button.Content>
+                                                        <TextBlock Text="&#xE922;" Style="{DynamicResource MetroSymbolStyle}" Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" />
+                                                    </Button.Content>
+                                                    <!--Path
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Data="{StaticResource MaximizeWindowIcon}"
+                                                        Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                        SnapsToDevicePixels="True"
+                                                        UseLayoutRounding="True" /-->
+                                                </Button>
+                                            </Grid>
+                                            <Button
+                                                Name="CloseWindowButton"
+                                                Width="46"
+                                                Height="36"
+                                                Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}"
+                                                Style="{StaticResource MetroWindowButtonCloseStyle}"
+                                                ToolTip="Close">
+                                                <Button.Content>
+                                                    <TextBlock Text="&#xE8BB;" Style="{DynamicResource MetroSymbolStyle}" Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" />
+                                                </Button.Content>
+                                                <!--Path
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Data="{StaticResource CloseWindowIcon}"
+                                                    Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                    SnapsToDevicePixels="True"
+                                                    UseLayoutRounding="True" /-->
+                                            </Button>
+                                        </StackPanel>
+                                        <TextBlock
+                                            Name="MetroWindowTitleTextBlock"
+                                            Grid.Row="0"
+                                            Margin="8,-1,0,0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            FontSize="{TemplateBinding FontSize}"
+                                            Foreground="{TemplateBinding Foreground}"
+                                            Text="{TemplateBinding Title}"
+                                            TextTrimming="CharacterEllipsis" />
+                                    </Grid>
+                                </AdornerDecorator>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="WindowState" Value="Normal">
+                            <Setter TargetName="MaximizeWindowButton" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="RestoreWindowButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="MaximizeWindowButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RestoreWindowButton" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="MetroTitleBarLayoutRoot" Property="Margin" Value="7" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome
+                    CornerRadius="0"
+                    GlassFrameThickness="1"
+                    UseAeroCaptionButtons="False" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- MAIN GRID TEMPLATE -->
+    <Style x:Key="GridDefaultStyle" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="-7" />
+    </Style>
+
+    <!-- RECTANGLE TEMPLATE -->
+    <Style x:Key="RectangleDefaultStyle" TargetType="{x:Type Rectangle}">
+        <Setter Property="Fill" Value="White" />
+    </Style>
+
+    <!-- TABCONTROL TEMPLATE -->
+    <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="SelectedIndex" Value="{Binding SelectedTabIndex}" />
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource TabItemStyle}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="TabStripPlacement" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid
+                        Background="{StaticResource TabItemPanelBGBrush}"
+                        ClipToBounds="True"
+                        KeyboardNavigation.TabNavigation="Local">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TabPanel
+                            Name="TabControl_HeaderPanel"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            Panel.ZIndex="1"
+                            Background="{StaticResource TabControl_HeaderPanelBGBrush}"
+                            IsItemsHost="True"
+                            KeyboardNavigation.TabIndex="1" />
+                        <Grid
+                            Name="PART_ItemsHolder"
+                            Grid.Column="1"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="Left"
+                            Background="{StaticResource TabControl_ContentPanelBGBrush}"
+                            KeyboardNavigation.DirectionalNavigation="Contained"
+                            KeyboardNavigation.TabIndex="2"
+                            KeyboardNavigation.TabNavigation="Local"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- TABITEM TEMPLATE -->
+    <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontStretch" Value="Condensed" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Foreground" Value="{StaticResource TabControl_TabItemForegroundBrush}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0,18,0,18" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Grid
+                        Name="TAB_Grid"
+                        Margin="0"
+                        Background="{TemplateBinding Background}"
+                        SnapsToDevicePixels="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+                        <iconPacks:PackIconOcticons
+                            Grid.Column="0"
+                            Margin="20,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="Tomato"
+                            Kind="{Binding TabIcon}" />
+                        <ContentPresenter
+                            Name="TAB_HeaderContent"
+                            Grid.Column="1"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="Left"
+                            ContentSource="Header"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            TextElement.FontStretch="Condensed" />
+                        <Rectangle
+                            Name="TAB_Selector"
+                            Width="4"
+                            Margin="1,0,0,0"
+                            HorizontalAlignment="Left"
+                            Fill="{StaticResource TabItemSelectorBrush}"
+                            Visibility="Collapsed" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Trigger.Setters>
+                                <Setter Property="Foreground" Value="{StaticResource TabControl_TabItemForegroundBrush_Selected}" />
+                                <Setter TargetName="TAB_Selector" Property="Visibility" Value="Visible" />
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger SourceName="TAB_Grid" Property="IsMouseOver" Value="True">
+                            <Trigger.Setters>
+                                <Setter Property="Background" Value="#F3E3DD" />
+                                <Setter Property="Foreground" Value="{StaticResource TabControl_TabItemForegroundBrush_MouseOver}" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger.Setters>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- TABCONTENTS -->
+    <DataTemplate x:Name="DownloadsViewTemplate" DataType="{x:Type viewModels:DownloadsViewModel}">
+        <views:DownloadsView DataContext="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Name="BrowseMainViewTemplate" DataType="{x:Type viewModels:BrowseMainViewModel}">
+        <views:BrowseMainView />
+    </DataTemplate>
+
+    <DataTemplate x:Name="FavoritesViewTemplate" DataType="{x:Type viewModels:FavoritesViewModel}">
+        <views:FavoritesView DataContext="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Name="FoldersViewTemplate" DataType="{x:Type viewModels:FoldersViewModel}">
+        <views:FoldersView DataContext="{Binding}" />
+    </DataTemplate>
+
+    <!-- TABCONTENT CHILD VIEWS -->
+    <DataTemplate x:Name="BrowseViewTemplate" DataType="{x:Type viewModels:BrowseViewModel}">
+        <views:BrowseView />
+    </DataTemplate>
+
+    <DataTemplate x:Name="InfoViewTemplate" DataType="{x:Type viewModels:InfoViewModel}">
+        <views:InfoView />
+    </DataTemplate>
+
+    <!-- TABCONTENT BASE GRID STYLE -->
+    <Style x:Key="TabContentGridStyle" TargetType="{x:Type Grid}">
+        <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+    </Style>
+</ResourceDictionary>
