@@ -10,6 +10,18 @@
             set { _selectedTitle = value; }
         }
 
+        private string _selectedAuthor;
+        public string SelectedAuthor {
+            get { return _selectedAuthor; }
+            set { _selectedAuthor = value; }
+        }
+
+        private string _selectedImage;
+        public string SelectedImage {
+            get { return _selectedImage; }
+            set { _selectedImage = value; }
+        }
+
         public InfoViewModel() {
         }
     }

@@ -1,7 +1,7 @@
 ﻿namespace ApplManga.ViewModels {
     public class FoldersViewModel : ViewModelBase, IPageViewModel {
         public string Name {
-            get { return "MANAGE FOLDERS"; }
+            get { return "Folders"; }
         }
 
         public string TabCaption { get; private set; }

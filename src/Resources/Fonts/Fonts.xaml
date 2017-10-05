@@ -1,6 +1,6 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <FontFamily x:Key="Quicksand">pack://application:,,,/Resources/Fonts/quicksand/#Quicksand</FontFamily>
     <FontFamily x:Key="Roboto">pack://application:,,,/Resources/Fonts/roboto/#Roboto</FontFamily>
     <FontFamily x:Key="SegoeMDL2Assets">pack://application:,,,/Resources/Fonts/segoe/#Segoe MDL2 Assets</FontFamily>
 </ResourceDictionary>

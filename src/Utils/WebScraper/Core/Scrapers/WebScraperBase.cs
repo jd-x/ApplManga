@@ -18,6 +18,7 @@ namespace ApplManga.Utils.WebScraper.Core.Scrapers {
         protected abstract string CreateNextURL(int nextPage);
         protected abstract string GetMangaTitle(HtmlNode row);
         protected abstract string GetMangaURL(HtmlNode row);
+        protected abstract string GetMangaAuthor(HtmlNode row);
         protected abstract string GetMangaImagePath(HtmlNode row);
         protected abstract string GetMangaPublishingStatus(HtmlNode row);
 
@@ -53,6 +54,12 @@ namespace ApplManga.Utils.WebScraper.Core.Scrapers {
                         continue;
                     }
 
+                    var author = GetMangaAuthor(row);
+                    if (author == null) {
+                        AppLogHelper.Log(AppLoggerBase.LogTarget.File, "Failed in extracting author, skipping...");
+                        continue;
+                    }
+
                     var imagePath = GetMangaImagePath(row);
                     if (imagePath == null) {
                         AppLogHelper.Log(AppLoggerBase.LogTarget.File, "Failed in extracting image URL, skipping...");
@@ -69,7 +76,8 @@ namespace ApplManga.Utils.WebScraper.Core.Scrapers {
 
                     var mangaEntry = new MangaList {
                         Title = title,
-                        Site = BaseURL,
+                        Site = titleURL,
+                        Author = author,
                         ImagePath = imagePath,
                         PubStatus = pubStatus
                     };

@@ -5,7 +5,7 @@ using System.Windows.Input;
 namespace ApplManga.ViewModels {
     public class BrowseMainViewModel : ViewModelBase, IPageViewModel {
         public string Name {
-            get { return "BROWSE MANGA"; }
+            get { return "Browse"; }
         }
 
         public string TabCaption { get; private set; }
@@ -75,9 +75,11 @@ namespace ApplManga.ViewModels {
             }
         }
 
-        private void BrowseViewModel_OnSelectionChange(string selection) {
+        private void BrowseViewModel_OnSelectionChange(string title, string author, string imagePath) {
             InfoViewModel infoViewModel = (InfoViewModel)BrowseViewModels[1];
-            infoViewModel.SelectedTitle = selection;
+            infoViewModel.SelectedTitle = title;
+            infoViewModel.SelectedAuthor = author;
+            infoViewModel.SelectedImage = imagePath;
         }
 
         public BrowseMainViewModel(string tabIcon) {

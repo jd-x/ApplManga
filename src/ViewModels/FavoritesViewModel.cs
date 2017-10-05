@@ -1,7 +1,7 @@
 ﻿namespace ApplManga.ViewModels {
     public class FavoritesViewModel : ViewModelBase, IPageViewModel {
         public string Name {
-            get { return "FAVORITES"; }
+            get { return "Favorites"; }
         }
 
         public string TabCaption { get; private set; }

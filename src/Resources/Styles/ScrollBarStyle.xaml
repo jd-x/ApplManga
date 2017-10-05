@@ -101,8 +101,8 @@
                 <Track.Thumb>
                     <Thumb
                         Margin="0"
-                        Background="{StaticResource AccentColor}"
-                        BorderBrush="{StaticResource AccentColor}"
+                        Background="{StaticResource AccentColorDefaultNormal}"
+                        BorderBrush="{StaticResource AccentColorDefaultNormal}"
                         Style="{StaticResource ScrollBarThumb}" />
                 </Track.Thumb>
                 <Track.IncreaseRepeatButton>
@@ -150,8 +150,8 @@
                 <Track.Thumb>
                     <Thumb
                         Margin="0"
-                        Background="#FFADABAB"
-                        BorderBrush="#FFADABAB"
+                        Background="{StaticResource AccentColorDefaultNormal}"
+                        BorderBrush="{StaticResource AccentColorDefaultNormal}"
                         Style="{StaticResource ScrollBarThumb}" />
                 </Track.Thumb>
                 <Track.IncreaseRepeatButton>

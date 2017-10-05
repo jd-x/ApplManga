@@ -1,14 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="ScrollbarThumbBrush_Default" Color="#FFA0A0A0" />
-    <SolidColorBrush x:Key="ScrollbarThumbBrush_Hover" Color="#FF8C8C8C" />
-    <SolidColorBrush x:Key="ScrollbarThumbBrush_Pressed" Color="#FF5D5D5D" />
-
-    <SolidColorBrush x:Key="MetroFGBrush" Color="#FF7A7A7A" />
-    <SolidColorBrush x:Key="MetroHighlightBrush" Color="#FFE6E6E6" />
-    <SolidColorBrush x:Key="MetroSelectedBrush" Color="#FFCCCCCC" />
-    <SolidColorBrush x:Key="MetroButtonCloseBrush" Color="#FFE81123" />
-
     <SolidColorBrush x:Key="TabContentBGBrush" Color="#FFF7F7F7" />
     <SolidColorBrush x:Key="TabControlBGBrush" Color="White" />
 
@@ -19,23 +10,12 @@
     <SolidColorBrush x:Key="TabControl_TabItemForegroundBrush_MouseOver" Color="#FF5E3A" />
     <SolidColorBrush x:Key="TabControl_TabItemForegroundBrush_Selected" Color="#252D4E" />
 
-    <SolidColorBrush x:Key="TabItemPanelBGBrush" Color="{DynamicResource Gray8}" />
     <SolidColorBrush x:Key="TabItemIsMouseOverBGBrush" Color="#40FF4D0A" />
     <SolidColorBrush x:Key="TabItemIsMouseOverFGBrush" Color="#FF5E3A" />
     <SolidColorBrush x:Key="TabItemIsNotSelectedFGBrush" Color="#FFBCBCBC" />
     <SolidColorBrush x:Key="TabItemIsSelectedBGBrush" Color="{DynamicResource Gray2}" />
     <SolidColorBrush x:Key="TabItemIsSelectedFGBrush" Color="Black" />
     <SolidColorBrush x:Key="TabItemSelectorBrush" Color="#FF5E3A" />
-
-    <SolidColorBrush x:Key="SearchBox_BorderBrush" Color="Gainsboro" />
-    <SolidColorBrush x:Key="SearchBox_BackgroundBrush" Color="#FFF7F7F7" />
-    <SolidColorBrush x:Key="SearchBox_BackgroundBrush_MouseOver" Color="White" />
-    <SolidColorBrush x:Key="SearchBox_ForegroundBrush" Color="Black" />
-    <SolidColorBrush x:Key="SearchBox_IconBackgroundBrush" Color="White" />
-    <SolidColorBrush x:Key="SearchBox_IconBackgroundBrush_MouseOver" Color="White" />
-    <SolidColorBrush x:Key="SearchBox_IconBackgroundBrush_MouseDown" Color="#FF5E3A" />
-    <SolidColorBrush x:Key="SearchBox_IconForegroundBrush" Color="White" />
-    <SolidColorBrush x:Key="SearchBox_IconForegroundBrush_MouseOver" Color="#FF5E3A" />
 
     <SolidColorBrush x:Key="CheckBox_BackgroundBrush" Color="White" />
     <SolidColorBrush x:Key="CheckBox_BackgroundBrush_MouseOver" Color="Gainsboro" />
@@ -45,6 +25,44 @@
 
     <SolidColorBrush x:Key="ListBox_BackgroundBrush_Checked" Color="#FF5E3A" />
 
-    <SolidColorBrush x:Key="AccentColor" Color="#FF5E3A" />
-    <SolidColorBrush x:Key="AccentColor_MouseOver" Color="#FF9B85" />
+    <!-- START ADDING BRUSHES BELOW -->
+
+    <SolidColorBrush x:Key="AccentColorDefaultNormal" Color="#FF5E3A" />
+    <SolidColorBrush x:Key="AccentColorDefaultMouseOver" Color="#FF9B85" />
+    <SolidColorBrush x:Key="ControlColorDefaultDisabled" Color="#A0A0A0" />
+    <SolidColorBrush x:Key="ControlColorFGDefaultDisabled" Color="#888888" />
+    <SolidColorBrush x:Key="ControlColorFGDefaultMouseDown" Color="White" />
+    <SolidColorBrush x:Key="ControlColorBGDefaulNormal" Color="White" />
+    <SolidColorBrush x:Key="ControlColorFGDefaultNormal" Color="#4E4E4E" />
+
+    <SolidColorBrush x:Key="ChromeButtonFGDefaultNormal" Color="#7A7A7A" />
+    <SolidColorBrush x:Key="ChromeButtonBGDefaultNormal" Color="White" />
+    <SolidColorBrush x:Key="ChromeButtonFGDefaultMouseOver" Color="White" />
+    <SolidColorBrush x:Key="ChromeButtonBGDefaultMouseOver" Color="#E6E6E6" />
+    <SolidColorBrush x:Key="ChromeButtonBGDefaultMouseDown" Color="#CCCCCC" />
+    <SolidColorBrush x:Key="ChromeButtonBGExitMouseDown" Color="#F1707A" />
+    <SolidColorBrush x:Key="ChromeButtonBGExitMouseOver" Color="#E81123" />
+
+    <SolidColorBrush x:Key="TabHeaderFGDefaultNormal" Color="#ABABAB" />
+    <SolidColorBrush x:Key="TabHeaderBGDefaultMouseOver" Color="#F3E3DD" />
+    <SolidColorBrush x:Key="TabControlBGDefaultNormal" Color="#F2F2F0" />
+
+    <SolidColorBrush x:Key="SearchBoxBorderFGDefaultNormal" Color="#DCDCDC" />
+    <SolidColorBrush x:Key="SearchBoxBorderBGDefaultNormal" Color="#F7F7F7" />
+    <SolidColorBrush x:Key="SearchBoxBorderBGDefaultMouseOverFocused" Color="White" />
+    <SolidColorBrush x:Key="SearchBoxButtonFGDefaultNormal" Color="#FF5E3A" />
+    <SolidColorBrush x:Key="SearchBoxButtonFGDefaultMouseOver" Color="#FF9B85" />
+    <SolidColorBrush x:Key="SearchBoxButtonFGDefaultMouseDown" Color="#FF5E3A" />
+    <SolidColorBrush x:Key="SearchBoxTextFGDefaultNormal" Color="#4E4E4E" />
+    <SolidColorBrush x:Key="SearchBoxWatermarkFGDefaultNormal" Color="#DCDCDC" />
+
+    <SolidColorBrush x:Key="ListBoxItemFGDefaultNormal" Color="#5A605F" />
+
+    <!-- EFFECTS GO HERE -->
+
+    <DropShadowEffect x:Key="mat_zDepth1" BlurRadius="5" ShadowDepth="1" Direction="270" Color="Black" />
+    <DropShadowEffect x:Key="mat_zDepth2" BlurRadius="8" ShadowDepth="2.5" Direction="270" Color="Black" />
+    <DropShadowEffect x:Key="mat_zDepth3" BlurRadius="14" ShadowDepth="4.5" Direction="270" Color="Black" />
+    <DropShadowEffect x:Key="mat_zDepth4" BlurRadius="25" ShadowDepth="8" Direction="270" Color="Black" />
+    <DropShadowEffect x:Key="mat_zDepth5" BlurRadius="35" ShadowDepth="13" Direction="270" Color="Black" />
 </ResourceDictionary>

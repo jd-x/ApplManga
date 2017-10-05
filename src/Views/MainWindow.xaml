@@ -3,20 +3,30 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fx="clr-namespace:ApplManga.Resources.Effects"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-    xmlns:local="clr-namespace:ApplManga"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:t="clr-namespace:ApplManga.Controls.PersistentTabControlEx"
-    Title="ApplManga"
+    Title="APPLMANGA"
     Width="1024"
     Height="600"
     MinWidth="1024"
     MinHeight="600"
     Style="{StaticResource MetroWindowStyle}"
     WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
 
-    <Grid Style="{StaticResource GridDefaultStyle}">
+    <Grid Margin="-7" Background="Transparent">
+        <Rectangle
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Fill="White"
+            Opacity="0.85">
+            <Rectangle.Effect>
+                <fx:NoiseEffect Ratio="0.05" />
+            </Rectangle.Effect>
+        </Rectangle>
         <t:PersistentTabControl
             DisplayMemberPath="TabCaption"
             ItemsSource="{Binding PageViewModels}"

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 namespace ApplManga.ViewModels {
     public abstract class ViewModelBase : INotifyPropertyChanged {
@@ -33,13 +32,15 @@ namespace ApplManga.ViewModels {
         }
 
         /// <summary>
-        /// Raises the PropertyChange event for the specified property.
+        /// Raises the <see cref="PropertyChanged"/> event for the specified property.
         /// </summary>
         /// <param name="propertyName">Property name to update, is case-sensitive.</param>
         public virtual void RaisePropertyChanged(string propertyName) {
             VerifyPropertyName(propertyName);
             OnPropertyChanged(propertyName);
         }
+
+        // Clean unused methods below
 
         /// <summary>
         /// Raised when a property on this object has a new value.

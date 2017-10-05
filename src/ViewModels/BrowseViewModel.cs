@@ -13,12 +13,12 @@ using ApplManga.Utils.WebScraper.Core.Scrapers;
 
 namespace ApplManga.ViewModels {
     public class BrowseViewModel : ViewModelBase, IPageViewModel {
-        public delegate void SelectionChange(string selection);
+        public delegate void SelectionChange(string title, string author, string imagePath);
 
         public SelectionChange OnSelectionChange { get; set; }
 
         public string Name {
-            get { return "BROWSE MANGA"; }
+            get { return "BROWSE"; }
         }
 
         private CheckedListBoxItem<MangaList> _selectedItem;
@@ -27,7 +27,7 @@ namespace ApplManga.ViewModels {
             set {
                 if (_selectedItem != value) {
                     _selectedItem = value;
-                    RaisePropertyChanged("SelectedTitle");
+                    RaisePropertyChanged("SelectedItem");
                 }
             }
         }
@@ -39,7 +39,29 @@ namespace ApplManga.ViewModels {
                 _selectedTitle = value;
                 RaisePropertyChanged("SelectedTitle");
 
-                OnSelectionChange?.Invoke(_selectedTitle);
+                OnSelectionChange?.Invoke(_selectedTitle, _selectedAuthor, _selectedImage);
+            }
+        }
+
+        private string _selectedAuthor;
+        public string SelectedAuthor {
+            get { return _selectedAuthor; }
+            set {
+                _selectedAuthor = value;
+                RaisePropertyChanged("SelectedAuthor");
+
+                OnSelectionChange?.Invoke(_selectedTitle, _selectedAuthor, _selectedImage);
+            }
+        }
+
+        private string _selectedImage;
+        public string SelectedImage {
+            get { return _selectedImage; }
+            set {
+                _selectedImage = value;
+                RaisePropertyChanged("SelectedImage");
+
+                OnSelectionChange?.Invoke(_selectedTitle, _selectedAuthor, _selectedImage);
             }
         }
 
@@ -199,6 +221,7 @@ namespace ApplManga.ViewModels {
                 }*/
 
                 Manga = new CheckedObservableCollection<MangaList>();
+
                 //scraperRepo.GetEntireList().Distinct().ToList().ForEach(i => Manga.Add(i));
                 Manga.AddRange(scraperRepo.GetEntireList().ToList());
 
@@ -212,9 +235,11 @@ namespace ApplManga.ViewModels {
 
                     if (SelectedItem != null) {
                         SelectedTitle = SelectedItem.Item.Title;
+                        SelectedAuthor = SelectedItem.Item.Author;
+                        SelectedImage = SelectedItem.Item.ImagePath;
                     }
 
-                    Console.WriteLine(SelectedTitle);
+                    Console.WriteLine(SelectedTitle + " | " + SelectedImage);
                 };
 
                 AppLogHelper.Log(AppLoggerBase.LogTarget.File, "Sample log entry");

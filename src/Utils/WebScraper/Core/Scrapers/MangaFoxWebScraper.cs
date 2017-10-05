@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using ApplManga.Utils.WebScraper.Core.Repos;
 using HtmlAgilityPack;
@@ -28,7 +30,11 @@ namespace ApplManga.Utils.WebScraper.Core.Scrapers {
         }
 
         protected override IEnumerable<HtmlNode> GetMangaRows(HtmlDocument htmlDoc) {
-            return htmlDoc.DocumentNode.SelectNodes("//div[contains(@class, 'manga_list')]/ul//li");
+            // Returns idx_# for testing
+            return htmlDoc.DocumentNode.SelectNodes("//ul[contains(@id, 'idx_#')]//li");
+
+            // Returns the entire manga list
+            //return htmlDoc.DocumentNode.SelectNodes("//div[contains(@class, 'manga_list')]/ul//li");
         }
 
         protected override string GetMangaTitle(HtmlNode row) {
@@ -43,8 +49,20 @@ namespace ApplManga.Utils.WebScraper.Core.Scrapers {
                 .Select(r => r.Attributes["href"].Value).SingleOrDefault();
         }
 
+        protected override string GetMangaAuthor(HtmlNode row) {
+            return "JADE LAUSA";
+        }
+
         protected override string GetMangaImagePath(HtmlNode row) {
-            return "";
+            var coverImageURLs = new List<string>();
+
+            for (int i = 0; i < 40; i++) {
+                coverImageURLs.Add("medium(" + i + ").jpg");
+            }
+
+            string rndCoverImage = coverImageURLs[new Random().Next(coverImageURLs.Count)];
+
+            return Path.Combine("C:/Users/jadem/Desktop/UI Mockups/Sample Covers/", rndCoverImage);
         }
 
         protected override string GetMangaPublishingStatus(HtmlNode row) {

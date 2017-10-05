@@ -59,8 +59,8 @@
       <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.5.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>packages\HtmlAgilityPack.1.5.1\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.5.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlAgilityPack.1.5.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MahApps.Metro.IconPacks.Octicons, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -104,6 +104,7 @@
     <Compile Include="Controls\PersistentTabControlEx\PersistentTabControl.cs" />
     <Compile Include="Controls\VirtualizingWrapPanelEx\VirtualizingWrapPanel.cs" />
     <Compile Include="Converters\TypeOfConverter.cs" />
+    <Compile Include="Resources\Effects\NoiseEffect.cs" />
     <Compile Include="Utils\AppLogger\Core\Logger\AppLoggerBase.cs" />
     <Compile Include="Utils\AppLogger\Core\Logger\AppLogHelper.cs" />
     <Compile Include="Utils\AppLogger\Core\Logger\DbLogger.cs" />
@@ -152,7 +153,15 @@
     <Compile Include="Views\InfoView.xaml.cs">
       <DependentUpon>InfoView.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Resources\Styles\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\WindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -160,7 +169,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -266,6 +275,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Effects\Noise.ps" />
+    <Resource Include="Resources\Fonts\quicksand\Quicksand-Bold.ttf" />
+    <Resource Include="Resources\Fonts\quicksand\Quicksand-Light.ttf" />
+    <Resource Include="Resources\Fonts\quicksand\Quicksand-Medium.ttf" />
+    <Resource Include="Resources\Fonts\quicksand\Quicksand-Regular.ttf" />
     <Resource Include="Resources\Fonts\segoe\segmdl2.ttf" />
     <Resource Include="Resources\Fonts\roboto\Roboto-Black.ttf" />
     <Resource Include="Resources\Fonts\roboto\Roboto-BlackItalic.ttf" />
@@ -295,8 +309,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Content Include="Resources\Effects\Noise.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\noise.png" />
     <Resource Include="Resources\Images\no_img.jpg" />
   </ItemGroup>
   <ItemGroup>

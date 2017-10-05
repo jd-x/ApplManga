@@ -2,8 +2,10 @@
 
     <ResourceDictionary.MergedDictionaries>
         <!-- DEFAULT CONTROLS' STYLES -->
-        <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ComboBoxStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Resources/Styles/MetroSymbolStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Resources/Styles/WindowStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Resources/Styles/ComboBoxStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Resources/Styles/CheckBoxStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Resources/Styles/PopupStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Resources/Styles/SearchBoxStyle.xaml" />
