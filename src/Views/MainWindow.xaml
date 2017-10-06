@@ -7,17 +7,26 @@
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:t="clr-namespace:ApplManga.Controls.PersistentTabControlEx"
+    x:Name="ApplWindow"
     Title="APPLMANGA"
     Width="1024"
     Height="600"
-    MinWidth="1024"
-    MinHeight="600"
-    Style="{StaticResource MetroWindowStyle}"
+    MinWidth="{Binding MinimumWindowWidth}"
+    MinHeight="{Binding MinimumWindowHeight}"
+    AllowsTransparency="True"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Grid Margin="-7" Background="Transparent">
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            CaptionHeight="{Binding TitleBarHeight}"
+            CornerRadius="0"
+            GlassFrameThickness="0"
+            ResizeBorderThickness="{Binding ResizeBorderThickness}" />
+    </WindowChrome.WindowChrome>
+
+    <Grid>
         <Rectangle
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"

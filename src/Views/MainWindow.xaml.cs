@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Interop;
 using ApplManga.ViewModels;
 
 namespace ApplManga {
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct Margins {
+        public int Left;
+        public int Top;
+        public int Right;
+        public int Bottom;
+    }
+
     internal enum AccentState {
         ACCENT_DISABLED = 1,
         ACCENT_ENABLE_GRADIENT = 0,
@@ -39,6 +46,9 @@ namespace ApplManga {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+        [DllImport("dwmapi.dll")]
+        internal static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref Margins margins);
+
         [DllImport("user32.dll")]
         internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
 
@@ -47,6 +57,7 @@ namespace ApplManga {
 
             var accent = new AccentPolicy();
             accent.AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND;
+            accent.AccentFlags = (0x20 | 0x40 | 0x80 | 0x100);
 
             var accentStructSize = Marshal.SizeOf(accent);
 
@@ -58,52 +69,28 @@ namespace ApplManga {
             data.SizeOfData = accentStructSize;
             data.Data = accentPtr;
 
+            // Removes the 1px window border
+            var windowBorders = new Margins();
+            windowBorders.Left = 0;
+            windowBorders.Top = 0;
+            windowBorders.Right = 0;
+            windowBorders.Bottom = 0;
+
+            DwmExtendFrameIntoClientArea(windowHelper.Handle, ref windowBorders);
+
             SetWindowCompositionAttribute(windowHelper.Handle, ref data);
 
             Marshal.FreeHGlobal(accentPtr);
         }
 
         public MainWindow() {
-            // Custom window wrapper bindings
-            CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, OnCloseWindow));
-            CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, OnRestoreWindow, OnCanResizeWindow));
-            CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, OnMaximizeWindow, OnCanResizeWindow));
-            CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, OnMinimizeWindow, OnCanMinimizeWindow));
-
             DataContext = new MainViewModel(Dispatcher, this);
             InitializeComponent();
             Loaded += MainWindow_Loaded;
-
-            // Enables dragging for borderless forms
-            //MouseLeftButtonDown += delegate { DragMove(); };
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e) {
             EnableBlur();
-        }
-
-        private void OnCanMinimizeWindow(object sender, CanExecuteRoutedEventArgs e) {
-            e.CanExecute = ResizeMode != ResizeMode.NoResize;
-        }
-
-        private void OnCanResizeWindow(object sender, CanExecuteRoutedEventArgs e) {
-            e.CanExecute = ResizeMode == ResizeMode.CanResize || this.ResizeMode == ResizeMode.CanResizeWithGrip;
-        }
-
-        private void OnMinimizeWindow(object sender, ExecutedRoutedEventArgs e) {
-            SystemCommands.MinimizeWindow(this);
-        }
-
-        private void OnMaximizeWindow(object sender, ExecutedRoutedEventArgs e) {
-            SystemCommands.MaximizeWindow(this);
-        }
-
-        private void OnRestoreWindow(object sender, ExecutedRoutedEventArgs e) {
-            SystemCommands.RestoreWindow(this);
-        }
-
-        private void OnCloseWindow(object sender, ExecutedRoutedEventArgs e) {
-            SystemCommands.CloseWindow(this);
         }
     }
 }

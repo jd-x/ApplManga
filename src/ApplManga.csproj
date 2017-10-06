@@ -67,6 +67,10 @@
       <HintPath>packages\MahApps.Metro.IconPacks.Octicons.1.9.0\lib\net45\MahApps.Metro.IconPacks.Octicons.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Windows.Shell.3.0.1.0\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -115,6 +119,7 @@
     <Compile Include="Models\GroupsData.cs" />
     <Compile Include="Utils\DAL\DbQueries.cs" />
     <Compile Include="Utils\Extensions\CheckedObservableCollection.cs" />
+    <Compile Include="Utils\Extensions\WindowResizer.cs" />
     <Compile Include="Utils\WebScraper\Core\IHtmlDocLoader.cs" />
     <Compile Include="Utils\WebScraper\Core\IWebScraper.cs" />
     <Compile Include="Utils\WebScraper\Core\HtmlDocLoader.cs" />

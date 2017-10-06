@@ -1,4 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ApplManga">
 
     <!-- METRO BUTTON TEXTBLOCK DEFAULT STYLE -->
     <Style x:Key="MetroButtonTextBlockDefaultStyle" TargetType="{x:Type TextBlock}">
@@ -10,24 +13,19 @@
     </Style>
 
     <!-- WINDOW TEMPLATE -->
-    <Style x:Key="MetroWindowStyle" TargetType="{x:Type Window}">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Background" Value="Transparent" />
+    <Style TargetType="{x:Type local:MainWindow}">
         <Setter Property="Foreground" Value="{StaticResource ControlColorFGDefaultNormal}" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
-        <Setter Property="TextOptions.TextHintingMode" Value="Fixed" />
+        <!-- Setter Property="TextOptions.TextHintingMode" Value="Fixed" / -->
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
-                    <Border
-                        Name="MetroWindowBorder"
-                        Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}"
-                        BorderThickness="0">
+                    <Border>
                         <Grid>
-                            <ContentPresenter Margin="{Binding BorderMargin}" />
+                            <Border>
+                                <ContentPresenter />
+                            </Border>
                             <Border BorderThickness="{TemplateBinding BorderThickness}">
                                 <Grid Name="MetroTitleBarLayoutRoot">
                                     <Grid.ColumnDefinitions>
@@ -50,7 +48,7 @@
                                             Name="MinimizeWindowButton"
                                             Width="46"
                                             Height="36"
-                                            Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}"
+                                            Command="{Binding MinimizeCommand}"
                                             ToolTip="Minimize">
                                             <Button.Content>
                                                 <TextBlock
@@ -64,7 +62,7 @@
                                                 Name="RestoreWindowButton"
                                                 Width="46"
                                                 Height="36"
-                                                Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}"
+                                                Command="{Binding MaximizeCommand}"
                                                 ToolTip="Restore Down"
                                                 Visibility="Collapsed">
                                                 <Button.Content>
@@ -78,7 +76,7 @@
                                                 Name="MaximizeWindowButton"
                                                 Width="46"
                                                 Height="36"
-                                                Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}"
+                                                Command="{Binding MaximizeCommand}"
                                                 ToolTip="Maximize">
                                                 <Button.Content>
                                                     <TextBlock
@@ -92,7 +90,7 @@
                                             Name="CloseWindowButton"
                                             Width="46"
                                             Height="36"
-                                            Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}"
+                                            Command="{Binding ExitCommand}"
                                             Style="{DynamicResource ChromeButtonExitStyle}"
                                             ToolTip="Close">
                                             <Button.Content>
@@ -115,18 +113,9 @@
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter TargetName="MaximizeWindowButton" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="RestoreWindowButton" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="MetroTitleBarLayoutRoot" Property="Margin" Value="7" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="WindowChrome.WindowChrome">
-            <Setter.Value>
-                <WindowChrome
-                    CornerRadius="0"
-                    GlassFrameThickness="1"
-                    UseAeroCaptionButtons="False" />
             </Setter.Value>
         </Setter>
     </Style>

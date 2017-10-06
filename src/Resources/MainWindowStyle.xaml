@@ -9,11 +9,8 @@
 
     <!-- TABCONTROL TEMPLATE -->
     <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
-        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="SelectedIndex" Value="{Binding SelectedTabIndex}" />
         <Setter Property="ItemContainerStyle" Value="{DynamicResource TabItemStyle}" />
-        <Setter Property="Margin" Value="0,0,0,0" />
-        <Setter Property="Padding" Value="0,0,0,0" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="TabStripPlacement" Value="Left" />
         <Setter Property="Template">
@@ -72,11 +69,9 @@
     <!-- TABITEM TEMPLATE -->
     <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="{StaticResource ControlColorFGDefaultNormal}" />
-        <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="Padding" Value="0,12,0,12" />
         <Setter Property="Height" Value="Auto" />
         <Setter Property="Width" Value="Auto" />
@@ -114,7 +109,7 @@
                         <Rectangle
                             Name="TAB_Selector"
                             Width="5"
-                            Margin="0"
+                            Margin="1,0,0,0"
                             HorizontalAlignment="Left"
                             Fill="{StaticResource AccentColorDefaultNormal}"
                             Visibility="Collapsed" />
