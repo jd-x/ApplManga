@@ -1,0 +1,19 @@
+﻿<Application
+    x:Class="jdx.ApplManga.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    DispatcherUnhandledException="Application_DispatcherUnhandledException"
+    StartupUri="/Views/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- GENERAL -->
+                <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Resources/Fonts/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Resources/Images/Images.xaml" />
+                <!-- MERGED STYLES -->
+                <ResourceDictionary Source="pack://application:,,,/Resources/ResourceCollection.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
