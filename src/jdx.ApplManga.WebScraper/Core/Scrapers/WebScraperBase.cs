@@ -13,7 +13,7 @@ namespace jdx.ApplManga.WebScraper.Core.Scrapers {
         protected IHtmlDocLoader HtmlLoader { get; set; }
         protected IWebScraperRepo ScraperRepo { get; set; }
 
-        protected abstract IEnumerable<HtmlNode> GetMangaRows(HtmlAgilityPack.HtmlDocument htmlDoc);
+        protected abstract IEnumerable<HtmlNode> GetMangaRows(HtmlDocument htmlDoc);
         protected abstract bool HasOnePageOnly();
         protected abstract string CreateNextURL(int nextPage);
         protected abstract string GetMangaTitle(HtmlNode row);

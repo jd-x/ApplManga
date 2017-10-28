@@ -60,8 +60,8 @@
       <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.5.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>packages\HtmlAgilityPack.1.5.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.6.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.0\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MahApps.Metro.IconPacks.Octicons, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -72,15 +72,19 @@
       <HintPath>packages\Microsoft.Windows.Shell.3.0.1.0\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.1\lib\net45\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.105.2, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>packages\System.Data.SQLite.Core.1.0.105.2\lib\net45\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.105.2\lib\net451\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.SQLite.EF6, Version=1.0.105.2, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>packages\System.Data.SQLite.EF6.1.0.105.2\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.105.2\lib\net451\System.Data.SQLite.EF6.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing" />
@@ -105,26 +109,55 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\CommandControlEx\CommandControl.cs" />
+    <Compile Include="Controls\ListBoxHeaderEx\Design\ListBoxComboItemsListDesignModel.cs" />
+    <Compile Include="Controls\ListBoxHeaderEx\Design\ListBoxComboItemDesignModel.cs" />
+    <Compile Include="Controls\ListBoxHeaderEx\ListBoxComboBox.xaml.cs">
+      <DependentUpon>ListBoxComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ListBoxHeaderEx\ListBoxComboBoxControl.xaml.cs">
+      <DependentUpon>ListBoxComboBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ListBoxHeaderEx\ListBoxHeaderControl.xaml.cs">
+      <DependentUpon>ListBoxHeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PageHostEx\PageHost.xaml.cs">
+      <DependentUpon>PageHost.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SearchBoxEx\SearchBox.cs" />
     <Compile Include="Controls\PersistentTabControlEx\PersistentTabControl.cs" />
+    <Compile Include="Controls\SideMenuEx\Design\SideMenuItemDesignModel.cs" />
+    <Compile Include="Controls\SideMenuEx\Design\SideMenuItemsListDesignModel.cs" />
+    <Compile Include="Controls\SideMenuEx\SideMenu.xaml.cs">
+      <DependentUpon>SideMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SideMenuEx\SideMenuItem.xaml.cs">
+      <DependentUpon>SideMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SideMenuEx\SideMenuItemsControl.xaml.cs">
+      <DependentUpon>SideMenuItemsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\VirtualizingWrapPanelEx\VirtualizingWrapPanel.cs" />
+    <Compile Include="Converters\AppViewValueConverter.cs" />
+    <Compile Include="Converters\BaseValueConverter.cs" />
+    <Compile Include="Converters\HalfSizeValueConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\TypeOfConverter.cs" />
-    <Compile Include="Resources\Effects\NoiseEffect.cs" />
+    <Compile Include="IOC\UIManager.cs" />
+    <Compile Include="Resources\Effects\BlurEffect\BlurEffect.cs" />
+    <Compile Include="Resources\Effects\NoiseEffect\NoiseEffect.cs" />
+    <Compile Include="Utils\Animations\PageAnimations.cs" />
+    <Compile Include="Utils\Animations\PageAnimation.cs" />
+    <Compile Include="Utils\Animations\FrameworkElementAnimations.cs" />
+    <Compile Include="Utils\Animations\StoryboardHelpers.cs" />
     <Compile Include="Utils\Base\Constants.cs" />
     <Compile Include="Utils\Extensions\CheckedObservableCollection.cs" />
     <Compile Include="Utils\Extensions\WindowResizer.cs" />
     <Compile Include="Utils\Extensions\BulkObservableCollection.cs" />
     <Compile Include="Utils\Extensions\CheckedListBoxItem.cs" />
-    <Compile Include="ViewModels\BrowseMainViewModel.cs" />
     <Compile Include="ViewModels\BrowseViewModel.cs" />
-    <Compile Include="ViewModels\DownloadsViewModel.cs" />
-    <Compile Include="ViewModels\FavoritesViewModel.cs" />
-    <Compile Include="ViewModels\FoldersViewModel.cs" />
-    <Compile Include="ViewModels\InfoViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\BrowseMainView.xaml.cs">
-      <DependentUpon>BrowseMainView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\BaseView.cs" />
     <Compile Include="Views\BrowseView.xaml.cs">
       <DependentUpon>BrowseView.xaml</DependentUpon>
     </Compile>
@@ -140,7 +173,43 @@
     <Compile Include="Views\InfoView.xaml.cs">
       <DependentUpon>InfoView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\ListBoxHeaderEx\ListBoxComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ListBoxHeaderEx\ListBoxComboBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ListBoxHeaderEx\ListBoxHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PageHostEx\PageHost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SideMenuEx\SideMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SideMenuEx\SideMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SideMenuEx\SideMenuItemsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\ListBoxHeaderStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\SideMenuStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -208,10 +277,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BrowseMainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\BrowseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -252,13 +317,16 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Resource Include="Resources\Effects\Noise.ps" />
+    <Resource Include="Resources\Effects\BlurEffect\Blur.ps" />
+    <Resource Include="Resources\Effects\NoiseEffect\Noise.ps" />
     <Resource Include="Resources\Fonts\quicksand\Quicksand-Bold.ttf" />
     <Resource Include="Resources\Fonts\quicksand\Quicksand-Light.ttf" />
     <Resource Include="Resources\Fonts\quicksand\Quicksand-Medium.ttf" />
@@ -278,7 +346,9 @@
     <Resource Include="Resources\Fonts\roboto\RobotoCondensed-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -293,7 +363,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Effects\Noise.fx" />
+    <Content Include="Resources\Effects\BlurEffect\Blur.fx" />
+    <Content Include="Resources\Effects\NoiseEffect\Noise.fx" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\noise.png" />
@@ -326,7 +397,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\System.Data.SQLite.Core.1.0.105.2\build\net45\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.Data.SQLite.Core.1.0.105.2\build\net45\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets'))" />
   </Target>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.2\build\net451\System.Data.SQLite.Core.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

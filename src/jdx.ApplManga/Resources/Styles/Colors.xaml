@@ -25,44 +25,88 @@
 
     <SolidColorBrush x:Key="ListBox_BackgroundBrush_Checked" Color="#FF5E3A" />
 
-    <!-- START ADDING BRUSHES BELOW -->
+    <!--  START ADDING BRUSHES BELOW  -->
 
-    <SolidColorBrush x:Key="AccentColorDefaultNormal" Color="#FF5E3A" />
-    <SolidColorBrush x:Key="AccentColorDefaultMouseOver" Color="#FF9B85" />
-    <SolidColorBrush x:Key="ControlColorDefaultDisabled" Color="#A0A0A0" />
-    <SolidColorBrush x:Key="ControlColorFGDefaultDisabled" Color="#888888" />
+    <Color x:Key="SemiTransparentWhite0">#F6FFFFFF</Color>
+    <Color x:Key="SemiTransparentWhite1">#F6F7F7F7</Color>
+    <Color x:Key="SemiTransparentGray0">#DCE6E6E6</Color>
+    <Color x:Key="LightGray0">#E6E6E6</Color>
+    <Color x:Key="LightGray1">#CCCCCC</Color>
+    <Color x:Key="LightGray2">#A0A0A0</Color>
+    <Color x:Key="LightGray3">#888888</Color>
+    <Color x:Key="LightGray4">#7A7A7A</Color>
+    <Color x:Key="LightGray5">#4E4E4E</Color>
+    <Color x:Key="LightGray6">#303030</Color>
+    <Color x:Key="LightOrange0">#FF9B85</Color>
+    <Color x:Key="LightOrange1">#FF6745</Color>
+    <Color x:Key="LightOrange2">#FF5E3A</Color>
+    <Color x:Key="LightRed0">#F1707A</Color>
+    <Color x:Key="LightRed1">#E81123</Color>
+
+    <SolidColorBrush x:Key="AccentColorDefaultNormal" Color="{StaticResource LightOrange2}" />
+    <SolidColorBrush x:Key="AccentColorDefaultMouseOver" Color="{StaticResource LightOrange0}" />
+    <SolidColorBrush x:Key="ControlColorDefaultDisabled" Color="{StaticResource LightGray2}" />
+    <SolidColorBrush x:Key="ControlColorFGDefaultDisabled" Color="{StaticResource LightGray3}" />
     <SolidColorBrush x:Key="ControlColorFGDefaultMouseDown" Color="White" />
     <SolidColorBrush x:Key="ControlColorBGDefaulNormal" Color="White" />
-    <SolidColorBrush x:Key="ControlColorFGDefaultNormal" Color="#4E4E4E" />
+    <SolidColorBrush x:Key="ControlColorFGDefaultNormal" Color="{StaticResource LightGray5}" />
 
-    <SolidColorBrush x:Key="ChromeButtonFGDefaultNormal" Color="#7A7A7A" />
+    <SolidColorBrush x:Key="ChromeButtonFGDefaultNormal" Color="{StaticResource LightGray4}" />
     <SolidColorBrush x:Key="ChromeButtonBGDefaultNormal" Color="White" />
     <SolidColorBrush x:Key="ChromeButtonFGDefaultMouseOver" Color="White" />
-    <SolidColorBrush x:Key="ChromeButtonBGDefaultMouseOver" Color="#E6E6E6" />
-    <SolidColorBrush x:Key="ChromeButtonBGDefaultMouseDown" Color="#CCCCCC" />
-    <SolidColorBrush x:Key="ChromeButtonBGExitMouseDown" Color="#F1707A" />
-    <SolidColorBrush x:Key="ChromeButtonBGExitMouseOver" Color="#E81123" />
+    <SolidColorBrush x:Key="ChromeButtonBGDefaultMouseOver" Color="{StaticResource LightGray0}" />
+    <SolidColorBrush x:Key="ChromeButtonBGDefaultMouseDown" Color="{StaticResource LightGray1}" />
+    <SolidColorBrush x:Key="ChromeButtonBGExitMouseDown" Color="{StaticResource LightRed0}" />
+    <SolidColorBrush x:Key="ChromeButtonBGExitMouseOver" Color="{StaticResource LightRed1}" />
 
-    <SolidColorBrush x:Key="TabHeaderFGDefaultNormal" Color="#ABABAB" />
-    <SolidColorBrush x:Key="TabHeaderBGDefaultMouseOver" Color="#F3E3DD" />
-    <SolidColorBrush x:Key="TabControlBGDefaultNormal" Color="#F2F2F0" />
+    <SolidColorBrush x:Key="TabHeaderFGDefaultNormal" Color="{StaticResource LightGray2}" />
+    <SolidColorBrush x:Key="TabHeaderFGDefaultMouseOver" Color="{StaticResource LightGray6}" />
+    <SolidColorBrush x:Key="TabHeaderBGDefaultMouseOver" Color="{StaticResource SemiTransparentGray0}" />
+    <SolidColorBrush x:Key="TabControlBGDefaultNormal" Color="{StaticResource LightGray0}" />
 
-    <SolidColorBrush x:Key="SearchBoxBorderFGDefaultNormal" Color="#DCDCDC" />
-    <SolidColorBrush x:Key="SearchBoxBorderBGDefaultNormal" Color="#F7F7F7" />
+    <SolidColorBrush x:Key="SearchBoxBorderFGDefaultNormal" Color="{StaticResource LightGray0}" />
+    <SolidColorBrush x:Key="SearchBoxBorderBGDefaultNormal" Color="{StaticResource SemiTransparentWhite1}" />
     <SolidColorBrush x:Key="SearchBoxBorderBGDefaultMouseOverFocused" Color="White" />
-    <SolidColorBrush x:Key="SearchBoxButtonFGDefaultNormal" Color="#FF5E3A" />
-    <SolidColorBrush x:Key="SearchBoxButtonFGDefaultMouseOver" Color="#FF9B85" />
-    <SolidColorBrush x:Key="SearchBoxButtonFGDefaultMouseDown" Color="#FF5E3A" />
-    <SolidColorBrush x:Key="SearchBoxTextFGDefaultNormal" Color="#4E4E4E" />
-    <SolidColorBrush x:Key="SearchBoxWatermarkFGDefaultNormal" Color="#DCDCDC" />
+    <SolidColorBrush x:Key="SearchBoxButtonFGDefaultNormal" Color="{StaticResource LightOrange2}" />
+    <SolidColorBrush x:Key="SearchBoxButtonFGDefaultMouseOver" Color="{StaticResource LightOrange0}" />
+    <SolidColorBrush x:Key="SearchBoxButtonFGDefaultMouseDown" Color="{StaticResource LightOrange2}" />
+    <SolidColorBrush x:Key="SearchBoxTextFGDefaultNormal" Color="{StaticResource LightGray5}" />
+    <SolidColorBrush x:Key="SearchBoxWatermarkFGDefaultNormal" Color="{StaticResource LightGray1}" />
 
-    <SolidColorBrush x:Key="ListBoxItemFGDefaultNormal" Color="#5A605F" />
+    <SolidColorBrush x:Key="ListBoxItemFGDefaultNormal" Color="{StaticResource LightGray5}" />
+    <SolidColorBrush x:Key="ListBoxHeaderBorderBGDefaultNormal" Color="White" />
+    <SolidColorBrush x:Key="ListBoxHeaderBGDefaultNormal" Color="{StaticResource SemiTransparentWhite0}" />
 
-    <!-- EFFECTS GO HERE -->
+    <!--  EFFECTS GO HERE  -->
 
-    <DropShadowEffect x:Key="mat_zDepth1" BlurRadius="5" ShadowDepth="1" Direction="270" Color="Black" />
-    <DropShadowEffect x:Key="mat_zDepth2" BlurRadius="8" ShadowDepth="2.5" Direction="270" Color="Black" />
-    <DropShadowEffect x:Key="mat_zDepth3" BlurRadius="14" ShadowDepth="4.5" Direction="270" Color="Black" />
-    <DropShadowEffect x:Key="mat_zDepth4" BlurRadius="25" ShadowDepth="8" Direction="270" Color="Black" />
-    <DropShadowEffect x:Key="mat_zDepth5" BlurRadius="35" ShadowDepth="13" Direction="270" Color="Black" />
+    <DropShadowEffect
+        x:Key="mat_zDepth1"
+        BlurRadius="5"
+        Direction="270"
+        ShadowDepth="1"
+        Color="Black" />
+    <DropShadowEffect
+        x:Key="mat_zDepth2"
+        BlurRadius="8"
+        Direction="270"
+        ShadowDepth="2.5"
+        Color="Black" />
+    <DropShadowEffect
+        x:Key="mat_zDepth3"
+        BlurRadius="14"
+        Direction="270"
+        ShadowDepth="4.5"
+        Color="Black" />
+    <DropShadowEffect
+        x:Key="mat_zDepth4"
+        BlurRadius="25"
+        Direction="270"
+        ShadowDepth="8"
+        Color="Black" />
+    <DropShadowEffect
+        x:Key="mat_zDepth5"
+        BlurRadius="35"
+        Direction="270"
+        ShadowDepth="13"
+        Color="Black" />
 </ResourceDictionary>

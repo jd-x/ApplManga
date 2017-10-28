@@ -1,10 +1,11 @@
-﻿using System.Windows.Controls;
+﻿using jdx.ApplManga.Core.ViewModels;
 
 namespace jdx.ApplManga.Views {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    /// Interaction logic for DownloadsView.xaml
     /// </summary>
-    public partial class DownloadsView : UserControl {
+    public partial class DownloadsView : BaseView<DownloadsViewModel> {
+
         public DownloadsView() {
             InitializeComponent();
         }

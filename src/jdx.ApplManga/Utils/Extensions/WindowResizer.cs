@@ -82,8 +82,7 @@ namespace jdx.ApplManga.Utils.Extensions {
         /// <param name="hwnd"></param>
         /// <param name="lParam"></param>
         private void WmGetMinMaxInfo(System.IntPtr hwnd, System.IntPtr lParam) {
-            POINT lMousePosition;
-            GetCursorPos(out lMousePosition);
+            GetCursorPos(out POINT lMousePosition);
 
             IntPtr lPrimaryScreen = MonitorFromPoint(new POINT(0, 0), MonitorOptions.MONITOR_DEFAULTTOPRIMARY);
             MONITORINFO lPrimaryScreenInfo = new MONITORINFO();
@@ -133,10 +132,10 @@ namespace jdx.ApplManga.Utils.Extensions {
         public int Left, Top, Right, Bottom;
 
         public Rectangle(int left, int top, int right, int bottom) {
-            this.Left = left;
-            this.Top = top;
-            this.Right = right;
-            this.Bottom = bottom;
+            Left = left;
+            Top = top;
+            Right = right;
+            Bottom = bottom;
         }
     }
 
@@ -164,8 +163,8 @@ namespace jdx.ApplManga.Utils.Extensions {
         /// Construct a point of coordinates (x,y).
         /// </summary>
         public POINT(int x, int y) {
-            this.X = x;
-            this.Y = y;
+            X = x;
+            Y = y;
         }
     }
 }

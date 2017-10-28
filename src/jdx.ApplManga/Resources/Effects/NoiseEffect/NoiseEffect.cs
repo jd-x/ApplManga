@@ -4,15 +4,16 @@ using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 
-namespace jdx.ApplManga.Resources.Effects {
+namespace jdx.ApplManga.Resources.Effects.NoiseEffect {
     public class NoiseEffect : ShaderEffect {
         public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(NoiseEffect), 0);
         public static readonly DependencyProperty RandomInputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("RandomInput", typeof(NoiseEffect), 1);
         public static readonly DependencyProperty RatioProperty = DependencyProperty.Register("Ratio", typeof(double), typeof(NoiseEffect), new UIPropertyMetadata(((double)(0.5D)), PixelShaderConstantCallback(0)));
 
         public NoiseEffect() {
-            PixelShader pixelShader = new PixelShader();
-            pixelShader.UriSource = new Uri("/jdx.ApplManga;component/Resources/Effects/Noise.ps", UriKind.Relative);
+            PixelShader pixelShader = new PixelShader {
+                UriSource = new Uri("/jdx.ApplManga;component/Resources/Effects/NoiseEffect/Noise.ps", UriKind.Relative)
+            };
             PixelShader = pixelShader;
 
             BitmapImage bitmap = new BitmapImage();

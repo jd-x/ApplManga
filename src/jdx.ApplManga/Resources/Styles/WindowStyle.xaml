@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:jdx.ApplManga">
 
-    <!-- METRO BUTTON TEXTBLOCK DEFAULT STYLE -->
+    <!--  METRO BUTTON TEXTBLOCK DEFAULT STYLE  -->
     <Style x:Key="MetroButtonTextBlockDefaultStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="Padding" Value="1" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -12,7 +12,7 @@
         <Setter Property="FontSize" Value="10" />
     </Style>
 
-    <!-- WINDOW TEMPLATE -->
+    <!--  WINDOW TEMPLATE  -->
     <Style TargetType="{x:Type local:MainWindow}">
         <Setter Property="Foreground" Value="{StaticResource ControlColorFGDefaultNormal}" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
@@ -36,7 +36,7 @@
                                         <RowDefinition Height="36" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <!-- CHROME BUTTONS -->
+                                    <!--  CHROME BUTTONS  -->
                                     <StackPanel
                                         Grid.Row="0"
                                         Grid.Column="2"
@@ -48,13 +48,12 @@
                                             Name="MinimizeWindowButton"
                                             Width="46"
                                             Height="36"
-                                            Command="{Binding MinimizeCommand}"
-                                            ToolTip="Minimize">
+                                            Command="{Binding MinimizeCommand}">
                                             <Button.Content>
                                                 <TextBlock
                                                     Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
                                                     Style="{DynamicResource MetroSymbolStyle}"
-                                                    Text="&#xE921;" />
+                                                    Text="{StaticResource MDL2MinimizeWindowIcon}" />
                                             </Button.Content>
                                         </Button>
                                         <Grid Margin="1,0,1,0">
@@ -63,26 +62,24 @@
                                                 Width="46"
                                                 Height="36"
                                                 Command="{Binding MaximizeCommand}"
-                                                ToolTip="Restore Down"
                                                 Visibility="Collapsed">
                                                 <Button.Content>
                                                     <TextBlock
                                                         Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
                                                         Style="{DynamicResource MetroSymbolStyle}"
-                                                        Text="&#xE923;" />
+                                                        Text="{StaticResource MDL2RestoreWindowIcon}" />
                                                 </Button.Content>
                                             </Button>
                                             <Button
                                                 Name="MaximizeWindowButton"
                                                 Width="46"
                                                 Height="36"
-                                                Command="{Binding MaximizeCommand}"
-                                                ToolTip="Maximize">
+                                                Command="{Binding MaximizeCommand}">
                                                 <Button.Content>
                                                     <TextBlock
                                                         Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
                                                         Style="{DynamicResource MetroSymbolStyle}"
-                                                        Text="&#xE922;" />
+                                                        Text="{StaticResource MDL2MaximizeWindowIcon}" />
                                                 </Button.Content>
                                             </Button>
                                         </Grid>
@@ -91,13 +88,12 @@
                                             Width="46"
                                             Height="36"
                                             Command="{Binding ExitCommand}"
-                                            Style="{DynamicResource ChromeButtonExitStyle}"
-                                            ToolTip="Close">
+                                            Style="{DynamicResource ChromeButtonExitStyle}">
                                             <Button.Content>
                                                 <TextBlock
                                                     Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
                                                     Style="{DynamicResource MetroSymbolStyle}"
-                                                    Text="&#xE8BB;" />
+                                                    Text="{StaticResource MDL2ExitWindowIcon}" />
                                             </Button.Content>
                                         </Button>
                                     </StackPanel>

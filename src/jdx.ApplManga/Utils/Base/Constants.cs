@@ -9,6 +9,7 @@ namespace jdx.ApplManga.Utils.Base {
         public static readonly double WindowTitleBarHeight = SystemParameters.WindowCaptionHeight + SystemParameters.ResizeFrameHorizontalBorderHeight;
         public static readonly double WindowResizeBorderSize = SystemParameters.ResizeFrameHorizontalBorderHeight;
         public static readonly int WindowOuterMarginSize = 10;
+        public static double WindowOpacity = 0.80;
 
         // Animation -----------------------------------------------------------------------------------------------------------
         public static readonly Duration MouseEnterDuration = new Duration(TimeSpan.FromMilliseconds(50));

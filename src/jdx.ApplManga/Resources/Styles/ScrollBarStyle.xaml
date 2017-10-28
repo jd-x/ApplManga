@@ -169,8 +169,9 @@
 
     <Style TargetType="{x:Type ScrollBar}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Panel.ZIndex" Value="999" />
+        <Setter Property="UseLayoutRounding" Value="True" />
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Vertical">
                 <Setter Property="Height" Value="Auto" />

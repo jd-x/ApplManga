@@ -1,7 +1,5 @@
-﻿using jdx.ApplManga.Core.ViewModels;
-
-namespace jdx.ApplManga.ViewModels {
-    public class FavoritesViewModel : ViewModelBase, IPageViewModel {
+﻿namespace jdx.ApplManga.Core.ViewModels {
+    public class FavoritesViewModel : BaseViewModel {
         public string Name {
             get { return "Favorites"; }
         }
@@ -13,6 +11,10 @@ namespace jdx.ApplManga.ViewModels {
         public FavoritesViewModel(string tabIcon) {
             TabCaption = Name;
             TabIcon = tabIcon;
+        }
+
+        public FavoritesViewModel() {
+
         }
     }
 }

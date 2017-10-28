@@ -3,9 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="clr-namespace:jdx.ApplManga.Controls.CommandControlEx"
     xmlns:conv="clr-namespace:jdx.ApplManga.Converters"
-    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-    xmlns:viewModels="clr-namespace:jdx.ApplManga.ViewModels"
-    xmlns:views="clr-namespace:jdx.ApplManga.Views">
+    xmlns:localvm="clr-namespace:jdx.ApplManga.ViewModels"
+    xmlns:localv="clr-namespace:jdx.ApplManga.Views">
 
     <!-- TABCONTROL TEMPLATE -->
     <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
@@ -46,7 +45,6 @@
                                 Margin="0,20,0,10"
                                 HorizontalAlignment="Left"
                                 Panel.ZIndex="1"
-                                Background="Transparent"
                                 IsItemsHost="True"
                                 KeyboardNavigation.TabIndex="1" />
                         </StackPanel>
@@ -71,7 +69,7 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="Foreground" Value="{StaticResource ControlColorFGDefaultNormal}" />
+        <Setter Property="Foreground" Value="{StaticResource TabHeaderFGDefaultNormal}" />
         <Setter Property="Padding" Value="0,12,0,12" />
         <Setter Property="Height" Value="Auto" />
         <Setter Property="Width" Value="Auto" />
@@ -92,7 +90,7 @@
                             Grid.Column="0"
                             Margin="10,0,0,0"
                             FontSize="14"
-                            Foreground="Gainsboro"
+                            Foreground="{StaticResource AccentColorDefaultNormal}"
                             Style="{DynamicResource MetroSymbolStyle}"
                             Text="{Binding TabIcon}" />
                         <ContentPresenter
@@ -125,7 +123,6 @@
                         <Trigger SourceName="TAB_Grid" Property="IsMouseOver" Value="True">
                             <Trigger.Setters>
                                 <Setter Property="Background" Value="{StaticResource TabHeaderBGDefaultMouseOver}" />
-                                <Setter Property="Foreground" Value="{StaticResource AccentColorDefaultMouseOver}" />
                                 <Setter Property="Cursor" Value="Hand" />
                             </Trigger.Setters>
                         </Trigger>
@@ -136,30 +133,30 @@
     </Style>
 
     <!-- TABCONTENTS -->
-    <DataTemplate x:Name="DownloadsViewTemplate" DataType="{x:Type viewModels:DownloadsViewModel}">
+    <!--DataTemplate x:Name="DownloadsViewTemplate" DataType="{x:Type viewModels:DownloadsViewModel}">
         <views:DownloadsView DataContext="{Binding}" />
-    </DataTemplate>
+    </-->
 
-    <DataTemplate x:Name="BrowseMainViewTemplate" DataType="{x:Type viewModels:BrowseMainViewModel}">
+    <!--DataTemplate x:Name="BrowseMainViewTemplate" DataType="{x:Type viewModels:BrowseMainViewModel}">
         <views:BrowseMainView />
-    </DataTemplate>
+    </-->
 
-    <DataTemplate x:Name="FavoritesViewTemplate" DataType="{x:Type viewModels:FavoritesViewModel}">
+    <!--DataTemplate x:Name="FavoritesViewTemplate" DataType="{x:Type viewModels:FavoritesViewModel}">
         <views:FavoritesView DataContext="{Binding}" />
-    </DataTemplate>
+    </-->
 
-    <DataTemplate x:Name="FoldersViewTemplate" DataType="{x:Type viewModels:FoldersViewModel}">
+    <!--DataTemplate x:Name="FoldersViewTemplate" DataType="{x:Type viewModels:FoldersViewModel}">
         <views:FoldersView DataContext="{Binding}" />
-    </DataTemplate>
+    </-->
 
     <!-- TABCONTENT CHILD VIEWS -->
-    <DataTemplate x:Name="BrowseViewTemplate" DataType="{x:Type viewModels:BrowseViewModel}">
+    <!--DataTemplate x:Name="BrowseViewTemplate" DataType="{x:Type viewModels:BrowseViewModel}">
         <views:BrowseView />
-    </DataTemplate>
+    </-->
 
-    <DataTemplate x:Name="InfoViewTemplate" DataType="{x:Type viewModels:InfoViewModel}">
+    <!--DataTemplate x:Name="InfoViewTemplate" DataType="{x:Type viewModels:InfoViewModel}">
         <views:InfoView />
-    </DataTemplate>
+    </-->
 
     <!-- TABCONTENT BASE GRID STYLE -->
     <Style x:Key="TabContentGridStyle" TargetType="{x:Type Grid}">

@@ -1,0 +1,15 @@
+﻿<UserControl
+    x:Class="jdx.ApplManga.Controls.ListBoxHeaderEx.ListBoxComboBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:jdx.ApplManga.Controls.ListBoxHeaderEx"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Height="40"
+    d:DesignHeight="40"
+    d:DesignWidth="100"
+    mc:Ignorable="d">
+
+    <!--  Set DataContext to ignorable later  -->
+    <ContentControl d:DataContext="{x:Static local:ListBoxComboItemDesignModel.Instance}" Style="{StaticResource ListBoxHeaderComboItemStyle}" />
+</UserControl>

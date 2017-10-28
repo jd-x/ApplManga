@@ -15,13 +15,13 @@ namespace jdx.ApplManga.Controls.CommandControlEx {
         public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register("CommandParameter", typeof(object), typeof(CommandControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None));
 
         public ICommand Command {
-            get { return (ICommand)GetValue(CommandProperty); }
-            set { SetValue(CommandProperty, value); }
+            get => (ICommand)GetValue(CommandProperty);
+            set => SetValue(CommandProperty, value);
         }
 
         public object CommandParameter {
-            get { return (object)GetValue(CommandParameterProperty); }
-            set { SetValue(CommandParameterProperty, value); }
+            get { return GetValue(CommandParameterProperty); }
+            set => SetValue(CommandParameterProperty, value);
         }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e) {

@@ -1,6 +1,18 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <FontFamily x:Key="Quicksand">pack://application:,,,/Resources/Fonts/quicksand/#Quicksand</FontFamily>
     <FontFamily x:Key="Roboto">pack://application:,,,/Resources/Fonts/roboto/#Roboto</FontFamily>
     <FontFamily x:Key="SegoeMDL2Assets">pack://application:,,,/Resources/Fonts/segoe/#Segoe MDL2 Assets</FontFamily>
+
+    <system:String x:Key="MDL2MinimizeWindowIcon">&#xE921;</system:String>
+    <system:String x:Key="MDL2MaximizeWindowIcon">&#xE922;</system:String>
+    <system:String x:Key="MDL2RestoreWindowIcon">&#xE923;</system:String>
+    <system:String x:Key="MDL2ExitWindowIcon">&#xE8BB;</system:String>
+    <system:String x:Key="MDL2DownloadsTabIcon">&#xE896;</system:String>
+    <system:String x:Key="MDL2BrowseTabIcon">&#xE82D;</system:String>
+    <system:String x:Key="MDL2FavoritesTabIcon">&#xEB52;</system:String>
+    <system:String x:Key="MDL2FoldersTabIcon">&#xED43;</system:String>
 </ResourceDictionary>

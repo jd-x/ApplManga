@@ -8,8 +8,8 @@ namespace jdx.ApplManga {
     [StructLayout(LayoutKind.Sequential)]
     internal struct Margins {
         public int Left;
-        public int Right;
         public int Top;
+        public int Right;
         public int Bottom;
     }
 
@@ -53,26 +53,29 @@ namespace jdx.ApplManga {
         internal void EnableBlur() {
             var windowHelper = new WindowInteropHelper(this);
 
-            var accent = new AccentPolicy();
-            accent.AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND;
-            accent.AccentFlags = (0x20 | 0x40 | 0x80 | 0x100);
+            var accent = new AccentPolicy {
+                AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND,
+                AccentFlags = (0x20 | 0x40 | 0x80 | 0x100)
+            };
 
             var accentStructSize = Marshal.SizeOf(accent);
 
             var accentPtr = Marshal.AllocHGlobal(accentStructSize);
             Marshal.StructureToPtr(accent, accentPtr, false);
 
-            var data = new WindowCompositionAttributeData();
-            data.Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY;
-            data.SizeOfData = accentStructSize;
-            data.Data = accentPtr;
+            var data = new WindowCompositionAttributeData {
+                Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY,
+                SizeOfData = accentStructSize,
+                Data = accentPtr
+            };
 
             // Removes the 1px window border
-            var windowBorders = new Margins();
-            windowBorders.Left = 10;
-            windowBorders.Right = 10;
-            windowBorders.Top = 10;
-            windowBorders.Bottom = 10;
+            var windowBorders = new Margins {
+                Left = 0,
+                Top = 0,
+                Right = 0,
+                Bottom = 0
+            };
 
             DwmExtendFrameIntoClientArea(windowHelper.Handle, ref windowBorders);
 
@@ -81,14 +84,14 @@ namespace jdx.ApplManga {
             Marshal.FreeHGlobal(accentPtr);
         }
 
-        public MainWindow() {
-            DataContext = new MainViewModel(Dispatcher, this);
-            InitializeComponent();
-            Loaded += MainWindow_Loaded;
-        }
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e) {
             EnableBlur();
+        }
+
+        public MainWindow() {
+            InitializeComponent();
+            DataContext = new MainViewModel(Dispatcher, this);
+            Loaded += MainWindow_Loaded;
         }
     }
 }

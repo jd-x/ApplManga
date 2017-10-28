@@ -1,0 +1,33 @@
+﻿<UserControl
+    x:Class="jdx.ApplManga.Controls.SideMenuEx.SideMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="600"
+    d:DesignWidth="200"
+    mc:Ignorable="d">
+
+    <UserControl.Template>
+        <ControlTemplate TargetType="{x:Type UserControl}">
+            <StackPanel>
+                <!--  Header  -->
+                <Label
+                    Height="80"
+                    Margin="0,0,0,10"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="{StaticResource AccentColorDefaultNormal}"
+                    Content="A P P L M A N G A"
+                    FontFamily="{StaticResource Quicksand}"
+                    FontSize="16"
+                    FontWeight="Light"
+                    Foreground="White"
+                    TextOptions.TextFormattingMode="Display" />
+
+                <!--  Side menu items holder  -->
+                <ContentPresenter />
+            </StackPanel>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>

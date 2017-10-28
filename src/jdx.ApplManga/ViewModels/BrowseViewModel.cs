@@ -4,23 +4,28 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
-using jdx.ApplManga.AppLogger.Core.Logger;
 using jdx.ApplManga.Core.Models;
 using jdx.ApplManga.Core.ViewModels;
 using jdx.ApplManga.Utils.Extensions;
 using jdx.ApplManga.WebScraper.Core;
 using jdx.ApplManga.WebScraper.Core.Repos;
 using jdx.ApplManga.WebScraper.Core.Scrapers;
+using jdx.ApplManga.Core.IOC;
+using System.Threading.Tasks;
 
 namespace jdx.ApplManga.ViewModels {
-    public class BrowseViewModel : ViewModelBase, IPageViewModel {
-        public delegate void SelectionChange(string title, string author, string imagePath);
-
-        public SelectionChange OnSelectionChange { get; set; }
-
+    public class BrowseViewModel : BaseViewModel {
         public string Name {
             get { return "BROWSE"; }
         }
+
+        public string TabIcon { get; private set; }
+
+        #region ListView properties
+
+        public delegate void SelectionChange(string title, string author, string imagePath);
+
+        public SelectionChange OnSelectionChange { get; set; }
 
         private CheckedListBoxItem<MangaList> _selectedItem;
         public CheckedListBoxItem<MangaList> SelectedItem {
@@ -28,7 +33,7 @@ namespace jdx.ApplManga.ViewModels {
             set {
                 if (_selectedItem != value) {
                     _selectedItem = value;
-                    RaisePropertyChanged("SelectedItem");
+                    RaisePropertyChanged(nameof(SelectedItem));
                 }
             }
         }
@@ -38,7 +43,7 @@ namespace jdx.ApplManga.ViewModels {
             get { return _selectedTitle; }
             set {
                 _selectedTitle = value;
-                RaisePropertyChanged("SelectedTitle");
+                RaisePropertyChanged(nameof(SelectedTitle));
 
                 OnSelectionChange?.Invoke(_selectedTitle, _selectedAuthor, _selectedImage);
             }
@@ -49,7 +54,7 @@ namespace jdx.ApplManga.ViewModels {
             get { return _selectedAuthor; }
             set {
                 _selectedAuthor = value;
-                RaisePropertyChanged("SelectedAuthor");
+                RaisePropertyChanged(nameof(SelectedAuthor));
 
                 OnSelectionChange?.Invoke(_selectedTitle, _selectedAuthor, _selectedImage);
             }
@@ -60,31 +65,29 @@ namespace jdx.ApplManga.ViewModels {
             get { return _selectedImage; }
             set {
                 _selectedImage = value;
-                RaisePropertyChanged("SelectedImage");
+                RaisePropertyChanged(nameof(SelectedImage));
 
                 OnSelectionChange?.Invoke(_selectedTitle, _selectedAuthor, _selectedImage);
             }
         }
-
-        public ICommand ButtonCommand { get; set; }
 
         private CheckedObservableCollection<MangaList> _manga;
         public CheckedObservableCollection<MangaList> Manga {
             get { return _manga; }
             set {
                 _manga = value;
-                RaisePropertyChanged("Manga");
+                RaisePropertyChanged(nameof(Manga));
             }
         }
 
         internal CollectionViewSource MangaCVS { get; set; }
 
         private ICollectionView _mangaCV;
-        public ICollectionView MangaCV {
-            get {
-                return _mangaCV;
-            }
-        }
+        public ICollectionView MangaCV => _mangaCV;
+
+        #endregion
+
+        #region SearchBox properties
 
         private string _filter;
         public string Filter {
@@ -109,114 +112,148 @@ namespace jdx.ApplManga.ViewModels {
             }
         }
 
-        protected string[] SortOptions = new string[] {
-            "A to Z",
-            "Release year",
-            "Author"
-        };
+        #endregion
 
-        protected string[] StatusOptions = new string[] {
-            "All",
-            "Completed",
-            "Ongoing"
-        };
+        //#region ComboBox properties
 
-        // Populate this with sites from database,
-        // use default values if none is provided
-        public string[] SiteOptions = new string[] {
-            "All",
-            "Bato.to",
-            "KissManga",
-            "MangaFox"
-        };
+        //protected string[] SortOptions = new string[] {
+        //    "A to Z",
+        //    "Release year",
+        //    "Author"
+        //};
 
-        private string _sortOptionsSelectedValue;
-        public string SortOptionsSelectedValue {
-            get { return _sortOptionsSelectedValue; }
-            set {
-                _sortOptionsSelectedValue = value;
-                RaisePropertyChanged("SortOptionsSelectedValue");
-            }
+        //protected string[] StatusOptions = new string[] {
+        //    "All",
+        //    "Completed",
+        //    "Ongoing"
+        //};
+
+        //// Populate this with sites from database,
+        //// use default values if none is provided
+        //public string[] SiteOptions = new string[] {
+        //    "All",
+        //    "Bato.to",
+        //    "KissManga",
+        //    "MangaFox"
+        //};
+
+        //private string _sortOptionsSelectedValue;
+        //public string SortOptionsSelectedValue {
+        //    get { return _sortOptionsSelectedValue; }
+        //    set {
+        //        _sortOptionsSelectedValue = value;
+        //        RaisePropertyChanged(nameof(SortOptionsSelectedValue));
+        //    }
+        //}
+
+        //private string _statusOptionsSelectedValue;
+        //public string StatusOptionsSelectedValue {
+        //    get { return _statusOptionsSelectedValue; }
+        //    set {
+        //        _statusOptionsSelectedValue = value;
+        //        RaisePropertyChanged(nameof(StatusOptionsSelectedValue));
+        //    }
+        //}
+
+        //private string _siteOptionsSelectedValue;
+        //public string SiteOptionsSelectedValue {
+        //    get { return _siteOptionsSelectedValue; }
+        //    set {
+        //        _siteOptionsSelectedValue = value;
+        //        RaisePropertyChanged(nameof(SiteOptionsSelectedValue));
+        //    }
+        //}
+
+        //private ObservableCollection<string> _sortComboOptions;
+        //public ObservableCollection<string> SortComboOptions {
+        //    get { return _sortComboOptions; }
+        //    set {
+        //        if (_sortComboOptions != value) {
+        //            _sortComboOptions = value;
+        //            RaisePropertyChanged(nameof(SortComboOptions));
+        //        }
+        //    }
+        //}
+
+        //private ObservableCollection<string> _statusComboOptions;
+        //public ObservableCollection<string> StatusComboOptions {
+        //    get { return _statusComboOptions; }
+        //    set {
+        //        if (_statusComboOptions != value) {
+        //            _statusComboOptions = value;
+        //            RaisePropertyChanged(nameof(StatusComboOptions));
+        //        }
+        //    }
+        //}
+
+        //private ObservableCollection<string> _siteComboOptions;
+        //public ObservableCollection<string> SiteComboOptions {
+        //    get { return _siteComboOptions; }
+        //    set {
+        //        if (_siteComboOptions != value) {
+        //            _siteComboOptions = value;
+        //            RaisePropertyChanged(nameof(SiteComboOptions));
+        //        }
+        //    }
+        //}
+
+        //private void SetupComboBoxes() {
+        //    // Populate sort dropdown values
+        //    SortComboOptions = new ObservableCollection<string>(SortOptions);
+        //    StatusComboOptions = new ObservableCollection<string>(StatusOptions);
+        //    SiteComboOptions = new ObservableCollection<string>(SiteOptions);
+
+        //    // Set default selected options
+        //    SortOptionsSelectedValue = SortOptions[0];
+        //    StatusOptionsSelectedValue = StatusOptions[0];
+        //    SiteOptionsSelectedValue = SiteOptions[0];
+        //}
+
+        //#endregion
+
+        #region Commands
+
+        /// <summary>
+        /// Switches to the selected item's <see cref="InfoView"/>
+        /// </summary>
+        public ICommand SwitchToInfoCommand { get; set; }
+
+        #endregion
+
+        /// <summary>
+        /// Passes the <see cref="SelectedItem"/> info to the InfoViewModel
+        /// </summary>
+        /// <param name="selectedItem">The selected manga title</param>
+        /// <returns></returns>
+        public async Task SwitchToInfoAsync(object selectedItem) {
+            IoC.Get<AppViewModel>().SwitchToView(AppView.Info);
+
+            Console.WriteLine("Switch to Info view command invoked");
+
+            await Task.Delay(1);
         }
 
-        private string _statusOptionsSelectedValue;
-        public string StatusOptionsSelectedValue {
-            get { return _statusOptionsSelectedValue; }
-            set {
-                _statusOptionsSelectedValue = value;
-                RaisePropertyChanged("StatusOptionsSelectedValue");
-            }
+        public void ShowDialog() {
+            IoC.UIManager.ShowMessageDialog(new MsgBoxDialogViewModel {
+                MsgTitle = "This is a test dialog",
+                MsgContent = "Sample message content",
+                MsgOkCaption = "Dismiss"
+            });
         }
-
-        private string _siteOptionsSelectedValue;
-        public string SiteOptionsSelectedValue {
-            get { return _siteOptionsSelectedValue; }
-            set {
-                _siteOptionsSelectedValue = value;
-                RaisePropertyChanged("SiteOptionsSelectedValue");
-            }
-        }
-
-        private ObservableCollection<string> _sortComboOptions;
-        public ObservableCollection<string> SortComboOptions {
-            get { return _sortComboOptions; }
-            set {
-                if (_sortComboOptions != value) {
-                    _sortComboOptions = value;
-                    RaisePropertyChanged("SortComboOptions");
-                }
-            }
-        }
-
-        private ObservableCollection<string> _statusComboOptions;
-        public ObservableCollection<string> StatusComboOptions {
-            get { return _statusComboOptions; }
-            set {
-                if (_statusComboOptions != value) {
-                    _statusComboOptions = value;
-                    RaisePropertyChanged("StatusComboOptions");
-                }
-            }
-        }
-
-        private ObservableCollection<string> _siteComboOptions;
-        public ObservableCollection<string> SiteComboOptions {
-            get { return _siteComboOptions; }
-            set {
-                if (_siteComboOptions != value) {
-                    _siteComboOptions = value;
-                    RaisePropertyChanged("SiteComboOptions");
-                }
-            }
-        }
-
-        /*private void ButtonClick() {
-            var checkedItems = Manga.Where(item => item.IsChecked == true);
-
-            foreach (var obj in checkedItems) {
-                AppLogHelper.Log(AppLoggerBase.LogTarget.File, string.Concat(obj.Item.Title, " :: ", obj.Item.Site, " :: ", obj.Item.PubStatus));
-                Console.WriteLine(string.Concat(obj.Item.Title, " :: ", obj.Item.Site));
-            }
-        }*/
 
         public BrowseViewModel() {
-            //ButtonCommand = new RelayCommand(obj => ButtonClick());
+            // Initialize values for filtering and sorting
+            // SetupComboBoxes();
 
-            // Populate sort dropdown values
-            SortComboOptions = new ObservableCollection<string>(SortOptions);
-            StatusComboOptions = new ObservableCollection<string>(StatusOptions);
-            SiteComboOptions = new ObservableCollection<string>(SiteOptions);
-
-            // Set default selected options
-            SortOptionsSelectedValue = SortOptions[0];
-            StatusOptionsSelectedValue = StatusOptions[0];
-            SiteOptionsSelectedValue = SiteOptions[0];
+            SwitchToInfoCommand = new RelayCommand(() => ShowDialog());
+            //SwitchToInfoCommand = new RelayParamCommand(async (selectedItem) => await SwitchToInfoAsync(selectedItem));
 
             try {
                 var htmlLoader = new HtmlDocLoader();
                 var scraperRepo = new WebScraperRepo();
                 var scrapers = new IWebScraper[] { new MangaFoxWebScraper() };
 
+                // Uncomment this block to update manga list database
                 /*foreach (var scraper in scrapers) {
                     scraper.Scrape(htmlLoader, scraperRepo);
                 }*/
@@ -226,8 +263,9 @@ namespace jdx.ApplManga.ViewModels {
                 //scraperRepo.GetEntireList().Distinct().ToList().ForEach(i => Manga.Add(i));
                 Manga.AddRange(scraperRepo.GetEntireList().ToList());
 
-                MangaCVS = new CollectionViewSource();
-                MangaCVS.Source = Manga;
+                MangaCVS = new CollectionViewSource {
+                    Source = Manga
+                };
                 MangaCVS.Filter += ApplyFilter;
 
                 _mangaCV = CollectionViewSource.GetDefaultView(MangaCVS.View);
@@ -240,35 +278,15 @@ namespace jdx.ApplManga.ViewModels {
                         SelectedImage = SelectedItem.Item.ImagePath;
                     }
 
+                    // For debugging only
                     Console.WriteLine(SelectedTitle + " | " + SelectedImage);
-                };
 
-                AppLogHelper.Log(AppLoggerBase.LogTarget.File, "Sample log entry");
+                    //AppLogHelper.Log(AppLoggerBase.LogTarget.File, "Selected Title: " + SelectedTitle + " <" + SelectedImage + ">");
+                };
             } catch (Exception ex) {
-                AppLogHelper.Log(AppLoggerBase.LogTarget.File, "Error running WebScraper: " + ex.Message);
+                //AppLogHelper.Log(AppLoggerBase.LogTarget.File, "Error running WebScraper: " + ex.Message);
                 Console.WriteLine(ex.InnerException);
             }
-
-
-            /*MangaImgs = new ObservableCollection<MangaImages> { };
-            DirectoryInfo mangaCoverDir = new DirectoryInfo(@"C:\Users\jadem\Desktop\ThumbnailSource");
-
-            foreach (FileInfo mangaCoverImage in mangaCoverDir.GetFiles("*.jpg")) {
-                MangaImgs.Add(new MangaImages { ImagePath = mangaCoverImage.FullName, Title = mangaCoverImage.Name });
-            }
-
-            _mangaImgs = new ObservableCollection<MangaImages>(MangaImgs);*/
         }
-
-        /*private ObservableCollection<MangaImages> _mangaImgs;
-        public ObservableCollection<MangaImages> MangaImgs {
-            get { return _mangaImgs; }
-            set { _mangaImgs = value; }
-        }*/
     }
-
-    /*public class MangaImages {
-        public string ImagePath { get; set; }
-        public string Title { get; set; }
-    }*/
 }

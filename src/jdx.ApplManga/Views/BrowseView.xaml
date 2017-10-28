@@ -1,12 +1,17 @@
-﻿<UserControl
+﻿<localv:BaseView
     x:Class="jdx.ApplManga.Views.BrowseView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:localv="clr-namespace:jdx.ApplManga.Views"
+    xmlns:localvm="clr-namespace:jdx.ApplManga.ViewModels"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:s="clr-namespace:jdx.ApplManga.Controls.SearchBoxEx"
     d:DesignHeight="600"
     d:DesignWidth="824"
+    x:TypeArguments="localvm:BrowseViewModel"
+    PageLoadAnimation="SlideAndFadeInFromBottom"
+    PageUnloadAnimation="FadeOut"
     mc:Ignorable="d">
 
     <Grid Style="{StaticResource TabContentGridStyle}">
@@ -18,6 +23,7 @@
             <RowDefinition Height="80" />
             <RowDefinition />
         </Grid.RowDefinitions>
+
         <s:SearchBox
             x:Name="SearchBoxEx"
             Grid.Row="0"
@@ -31,6 +37,13 @@
             SearchMode="Instant"
             Tag="Search"
             Text="{Binding Filter}" />
+
+        <Rectangle
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Fill="White"
+            IsHitTestVisible="False" />
+
         <ListBox
             Name="MangaList"
             Grid.Row="1"
@@ -39,6 +52,7 @@
             Margin="20,10,10,0"
             IsSynchronizedWithCurrentItem="True"
             ItemsSource="{Binding MangaCV}"
+            SelectedItem="{Binding SelectedItem}"
             Style="{StaticResource ListBoxStyle}" />
     </Grid>
-</UserControl>
+</localv:BaseView>

@@ -1,7 +1,7 @@
 ﻿using jdx.ApplManga.Core.ViewModels;
 
 namespace jdx.ApplManga.Utils.Extensions {
-    public class CheckedListBoxItem<T> : ViewModelBase {
+    public class CheckedListBoxItem<T> : BaseViewModel {
         private readonly CheckedObservableCollection<T> _parent;
 
         public CheckedListBoxItem(CheckedObservableCollection<T> parent) {
@@ -13,7 +13,7 @@ namespace jdx.ApplManga.Utils.Extensions {
             get { return _item; }
             set {
                 _item = value;
-                RaisePropertyChanged("Item");
+                RaisePropertyChanged(nameof(Item));
             }
         }
 
@@ -23,7 +23,7 @@ namespace jdx.ApplManga.Utils.Extensions {
             set {
                 _isChecked = value;
                 CheckChanged();
-                RaisePropertyChanged("IsChecked");
+                RaisePropertyChanged(nameof(IsChecked));
             }
         }
 

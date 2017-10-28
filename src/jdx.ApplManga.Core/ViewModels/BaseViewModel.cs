@@ -1,9 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using jdx.ApplManga.Core.Expressions;
 
 namespace jdx.ApplManga.Core.ViewModels {
-    public abstract class ViewModelBase : INotifyPropertyChanged {
+
+    public class BaseViewModel : INotifyPropertyChanged {
         /// <summary>
         /// Returns whether an exception is thrown or if a Debug.Fail()
         /// is used when an invalid property name is passed to the
@@ -32,17 +36,6 @@ namespace jdx.ApplManga.Core.ViewModels {
         }
 
         /// <summary>
-        /// Raises the <see cref="PropertyChanged"/> event for the specified property.
-        /// </summary>
-        /// <param name="propertyName">Property name to update, is case-sensitive.</param>
-        public virtual void RaisePropertyChanged(string propertyName) {
-            VerifyPropertyName(propertyName);
-            OnPropertyChanged(propertyName);
-        }
-
-        // Clean unused methods below
-
-        /// <summary>
         /// Raised when a property on this object has a new value.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
@@ -53,6 +46,35 @@ namespace jdx.ApplManga.Core.ViewModels {
         /// <param name="propertyName"></param>
         protected virtual void OnPropertyChanged(string propertyName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Raises the <see cref="PropertyChanged"/> event for the specified property.
+        /// </summary>
+        /// <param name="propertyName">Property name to update, is case-sensitive.</param>
+        public virtual void RaisePropertyChanged(string propertyName) {
+            VerifyPropertyName(propertyName);
+            OnPropertyChanged(propertyName);
+        }
+
+        /// <summary>
+        /// Runs a command if the updating flag is unset
+        /// </summary>
+        /// <param name="updatingFlag">Flag for the current command state (running or not)</param>
+        /// <param name="action">The action to execute if the command is not already running</param>
+        /// <returns></returns>
+        protected async Task RunCommandAsync(Expression<Func<bool>> updatingFlag, Func<Task> action) {
+            // Check if the function is already running
+            if (updatingFlag.GetPropertyValue())
+                return;
+
+            updatingFlag.SetPropertyValue(true);
+
+            try {
+                await action();
+            } finally {
+                updatingFlag.SetPropertyValue(false);
+            }
         }
     }
 }

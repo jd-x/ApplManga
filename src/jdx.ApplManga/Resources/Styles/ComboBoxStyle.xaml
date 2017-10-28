@@ -63,11 +63,11 @@
                         </Grid.ColumnDefinitions>
                         <Label
                             Grid.Column="0"
-                            Margin="0,4,4,4"
+                            Margin="0,4,4,2"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Content="{TemplateBinding Tag}"
-                            Foreground="{StaticResource TabHeaderFGDefaultNormal}" />
+                            Foreground="{StaticResource ControlColorFGDefaultNormal}" />
                         <ToggleButton
                             Name="ToggleButton"
                             Grid.Column="1"

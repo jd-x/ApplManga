@@ -1,7 +1,5 @@
-﻿using jdx.ApplManga.Core.ViewModels;
-
-namespace jdx.ApplManga.ViewModels {
-    public class FoldersViewModel : ViewModelBase, IPageViewModel {
+﻿namespace jdx.ApplManga.Core.ViewModels {
+    public class FoldersViewModel : BaseViewModel {
         public string Name {
             get { return "Folders"; }
         }
@@ -13,6 +11,10 @@ namespace jdx.ApplManga.ViewModels {
         public FoldersViewModel(string tabIcon) {
             TabCaption = Name;
             TabIcon = tabIcon;
+        }
+
+        public FoldersViewModel() {
+
         }
     }
 }

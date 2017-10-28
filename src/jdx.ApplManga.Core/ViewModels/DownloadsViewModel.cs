@@ -1,7 +1,5 @@
-﻿using jdx.ApplManga.Core.ViewModels;
-
-namespace jdx.ApplManga.ViewModels {
-    public class DownloadsViewModel : ViewModelBase, IPageViewModel {
+﻿namespace jdx.ApplManga.Core.ViewModels {
+    public class DownloadsViewModel : BaseViewModel {
         public string Name {
             get { return "Downloads"; }
         }
@@ -13,6 +11,10 @@ namespace jdx.ApplManga.ViewModels {
         public DownloadsViewModel(string tabIcon) {
             TabCaption = Name;
             TabIcon = tabIcon;
+        }
+
+        public DownloadsViewModel() {
+
         }
     }
 }

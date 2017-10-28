@@ -1,0 +1,54 @@
+﻿<UserControl
+    x:Class="jdx.ApplManga.Controls.ListBoxHeaderEx.ListBoxHeaderControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="40"
+    d:DesignWidth="600"
+    mc:Ignorable="d">
+
+    <UserControl.Template>
+        <ControlTemplate TargetType="{x:Type UserControl}">
+            <DockPanel>
+                <!--  Drop shadow behind semi-transparent header  -->
+                <Border
+                    Height="20"
+                    Margin="0,0,20,0"
+                    Background="{StaticResource ListBoxHeaderBorderBGDefaultNormal}"
+                    BorderThickness="0"
+                    DockPanel.Dock="Top">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="8"
+                            Direction="270"
+                            ShadowDepth="10.0"
+                            Color="White" />
+                    </Border.Effect>
+                </Border>
+                <!--  Header BG  -->
+                <StackPanel
+                    Margin="0,-10,20,0"
+                    Background="{StaticResource ListBoxHeaderBGDefaultNormal}"
+                    Orientation="Horizontal">
+                    <!--  ComboBox holder  -->
+                    <ContentPresenter Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                </StackPanel>
+                <!--  Thin border below semi-transparent header  -->
+                <Border
+                    Height="6"
+                    Margin="0,0,20,0"
+                    BorderThickness="0,0.5,0,0"
+                    DockPanel.Dock="Top">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Offset="0.0" Color="White" />
+                            <GradientStop Offset="0.5" Color="Gainsboro" />
+                            <GradientStop Offset="1.0" Color="White" />
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>

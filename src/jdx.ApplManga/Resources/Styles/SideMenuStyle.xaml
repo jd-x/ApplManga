@@ -1,0 +1,88 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:conv="clr-namespace:jdx.ApplManga.Converters">
+
+    <Style x:Key="SideMenuItemStyle" TargetType="{x:Type ContentControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContentControl}">
+                    <Border x:Name="ItemBackground" Background="Transparent">
+                        <!--  Go to selected page on mouse click  -->
+                        <Border.InputBindings>
+                            <MouseBinding Command="{Binding SwitchToPageCommand}" MouseAction="LeftClick" />
+                        </Border.InputBindings>
+
+                        <Grid x:Name="ItemContainer" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--  Selected item marker  -->
+                            <Border
+                                Grid.Column="0"
+                                Width="5"
+                                HorizontalAlignment="Left"
+                                Background="{StaticResource AccentColorDefaultNormal}"
+                                Visibility="{Binding IsSelected, Converter={conv:BooleanToVisibilityConverter}, ConverterParameter=True}" />
+                            <!--  Tab icon  -->
+                            <TextBlock
+                                Name="ItemSymbol"
+                                Grid.Column="0"
+                                Margin="20,0,12,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Foreground="{StaticResource AccentColorDefaultNormal}"
+                                Style="{DynamicResource MetroSymbolStyle}"
+                                Text="{Binding MenuItemIcon}" />
+                            <!--  Tab item text  -->
+                            <TextBlock
+                                Name="ItemText"
+                                Grid.Column="1"
+                                Margin="3,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="12"
+                                FontWeight="SemiBold"
+                                Foreground="{StaticResource TabHeaderFGDefaultNormal}"
+                                Text="{Binding MenuItemName}" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                            <Setter TargetName="ItemText" Property="Foreground" Value="{StaticResource AccentColorDefaultNormal}" />
+                        </DataTrigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation
+                                        Storyboard.TargetName="ItemContainer"
+                                        Storyboard.TargetProperty="Background.Color"
+                                        To="{StaticResource SemiTransparentGray0}"
+                                        Duration="0:0:0.05" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation
+                                        Storyboard.TargetName="ItemContainer"
+                                        Storyboard.TargetProperty="Background.Color"
+                                        To="Transparent"
+                                        Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="ItemContainer" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
