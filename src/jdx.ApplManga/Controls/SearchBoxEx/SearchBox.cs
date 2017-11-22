@@ -30,8 +30,9 @@ namespace jdx.ApplManga.Controls.SearchBoxEx {
         private static Border searchIconBorder;
 
         public SearchBox() : base() {
-            searchEventDelayTimer = new DispatcherTimer();
-            searchEventDelayTimer.Interval = SearchEventTimeDelay.TimeSpan;
+            searchEventDelayTimer = new DispatcherTimer {
+                Interval = SearchEventTimeDelay.TimeSpan
+            };
             searchEventDelayTimer.Tick += new EventHandler(OnSearchEventDelayTimerTick);
         }
 
@@ -59,11 +60,11 @@ namespace jdx.ApplManga.Controls.SearchBoxEx {
 
             searchIconBorder = GetTemplateChild("PART_SearchIconBorder") as Border;
             cancelSearchIconBorder = GetTemplateChild("PART_CancelSearchIconBorder") as Border;
-            List<Border> iconBorders = new List<Border>();
-
-            // TODO: Implement a better way of getting children controls of type(x)
-            iconBorders.Add(searchIconBorder);
-            iconBorders.Add(cancelSearchIconBorder);
+            List<Border> iconBorders = new List<Border> {
+                // TODO: Implement a better way of getting children controls of type(x)
+                searchIconBorder,
+                cancelSearchIconBorder
+            };
 
             foreach (var border in iconBorders) {
                 if (border != null) {
@@ -127,8 +128,7 @@ namespace jdx.ApplManga.Controls.SearchBoxEx {
         }
 
         static void OnSearchEventTimeDelayChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
-            SearchBox searchBox = d as SearchBox;
-            if (searchBox != null) {
+            if (d is SearchBox searchBox) {
                 searchBox.searchEventDelayTimer.Interval = ((Duration)e.NewValue).TimeSpan;
                 searchBox.searchEventDelayTimer.Stop();
             }

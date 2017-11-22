@@ -6,11 +6,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- GENERAL -->
+                <!--  GENERAL  -->
                 <ResourceDictionary Source="pack://application:,,,/Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Resources/Fonts/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Resources/Images/Images.xaml" />
-                <!-- MERGED STYLES -->
+                <!--  MERGED STYLES  -->
                 <ResourceDictionary Source="pack://application:,,,/Resources/ResourceCollection.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

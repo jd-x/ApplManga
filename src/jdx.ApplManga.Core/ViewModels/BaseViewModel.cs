@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using jdx.ApplManga.Core.Expressions;
 
 namespace jdx.ApplManga.Core.ViewModels {
-
+    
     public class BaseViewModel : INotifyPropertyChanged {
         /// <summary>
         /// Returns whether an exception is thrown or if a Debug.Fail()

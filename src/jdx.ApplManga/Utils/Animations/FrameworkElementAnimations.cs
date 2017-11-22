@@ -86,6 +86,8 @@ namespace jdx.ApplManga.Utils.Animations {
             element.Visibility = Visibility.Visible;
 
             await Task.Delay((int)(duration * 1000));
+
+            element.Visibility = Visibility.Collapsed;
         }
     }
 }

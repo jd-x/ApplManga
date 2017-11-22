@@ -2,8 +2,10 @@
     x:Class="jdx.ApplManga.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ap="clr-namespace:jdx.ApplManga.Utils.AttachedProperties"
     xmlns:conv="clr-namespace:jdx.ApplManga.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
     xmlns:localvm="clr-namespace:jdx.ApplManga.ViewModels"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:noisefx="clr-namespace:jdx.ApplManga.Resources.Effects.NoiseEffect"
@@ -15,7 +17,10 @@
     Height="600"
     MinWidth="{Binding MinimumWindowWidth}"
     MinHeight="{Binding MinimumWindowHeight}"
+    Activated="ApplWindow_Activated"
     AllowsTransparency="True"
+    Deactivated="ApplWindow_Deactivated"
+    Style="{StaticResource DefaultWindowStyle}"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -34,20 +39,26 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <Border
+            Grid.ColumnSpan="2"
+            Panel.ZIndex="1000"
+            Opacity="0.25">
+            <Border ap:AnimateFadeInProperty.Value="{Binding DimOverlayVisible}" Background="{StaticResource DimOverlayBGDefaultNormal}" />
+        </Border>
+
         <Rectangle
             Grid.ColumnSpan="2"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Fill="White"
-            Opacity="{Binding WindowOpacity}">
-            <Rectangle.Effect>
+            Fill="White">
+            <!--Rectangle.Effect>
                 <noisefx:NoiseEffect Ratio="0.03" />
-            </Rectangle.Effect>
+            </-->
         </Rectangle>
 
         <p:PageHost
             Grid.Column="1"
-            CurrentView="{Binding ApplicationViewModel.CurrentView, Source={x:Static localvm:ViewModelLocator.Instance}}"
+            CurrentView="{Binding ApplicationViewModel.CurrentView, Source={x:Static localvm:ViewModelLocator.Instance}, diag:PresentationTraceSources.TraceLevel=Medium}"
             CurrentViewModel="{Binding ApplicationViewModel.CurrentViewModel, Source={x:Static localvm:ViewModelLocator.Instance}}" />
 
         <s:SideMenu Grid.Column="0" Width="200">

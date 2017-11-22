@@ -43,13 +43,21 @@
     <Color x:Key="LightRed0">#F1707A</Color>
     <Color x:Key="LightRed1">#E81123</Color>
 
+    <!--  TODO: LIMIT BRUSHES IN USE, SET NAMING CONVENTION FOR BRUSHES  -->
+
     <SolidColorBrush x:Key="AccentColorDefaultNormal" Color="{StaticResource LightOrange2}" />
     <SolidColorBrush x:Key="AccentColorDefaultMouseOver" Color="{StaticResource LightOrange0}" />
-    <SolidColorBrush x:Key="ControlColorDefaultDisabled" Color="{StaticResource LightGray2}" />
+    <SolidColorBrush x:Key="ControlColorBGDefaultDisabled" Color="{StaticResource LightGray2}" />
     <SolidColorBrush x:Key="ControlColorFGDefaultDisabled" Color="{StaticResource LightGray3}" />
     <SolidColorBrush x:Key="ControlColorFGDefaultMouseDown" Color="White" />
     <SolidColorBrush x:Key="ControlColorBGDefaulNormal" Color="White" />
     <SolidColorBrush x:Key="ControlColorFGDefaultNormal" Color="{StaticResource LightGray5}" />
+
+    <SolidColorBrush x:Key="ButtonBGDefaultNormal" Color="{StaticResource LightGray1}" />
+    <SolidColorBrush x:Key="ButtonFGDefaultNormal" Color="Black" />
+    <SolidColorBrush x:Key="ButtonBorderDefaultMouseOver" Color="{StaticResource LightGray4}" />
+    <SolidColorBrush x:Key="ButtonBGDefaultPressed" Color="{StaticResource LightOrange2}" />
+    <SolidColorBrush x:Key="ButtonFGDefaultDisabled" Color="{StaticResource LightGray4}" />
 
     <SolidColorBrush x:Key="ChromeButtonFGDefaultNormal" Color="{StaticResource LightGray4}" />
     <SolidColorBrush x:Key="ChromeButtonBGDefaultNormal" Color="White" />
@@ -58,6 +66,8 @@
     <SolidColorBrush x:Key="ChromeButtonBGDefaultMouseDown" Color="{StaticResource LightGray1}" />
     <SolidColorBrush x:Key="ChromeButtonBGExitMouseDown" Color="{StaticResource LightRed0}" />
     <SolidColorBrush x:Key="ChromeButtonBGExitMouseOver" Color="{StaticResource LightRed1}" />
+
+    <SolidColorBrush x:Key="DimOverlayBGDefaultNormal" Color="Black" />
 
     <SolidColorBrush x:Key="TabHeaderFGDefaultNormal" Color="{StaticResource LightGray2}" />
     <SolidColorBrush x:Key="TabHeaderFGDefaultMouseOver" Color="{StaticResource LightGray6}" />

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
@@ -15,11 +14,15 @@ using System.Threading.Tasks;
 
 namespace jdx.ApplManga.ViewModels {
     public class BrowseViewModel : BaseViewModel {
+        #region Public properties
+
         public string Name {
             get { return "BROWSE"; }
         }
 
         public string TabIcon { get; private set; }
+
+        #endregion
 
         #region ListView properties
 
@@ -29,7 +32,7 @@ namespace jdx.ApplManga.ViewModels {
 
         private CheckedListBoxItem<MangaList> _selectedItem;
         public CheckedListBoxItem<MangaList> SelectedItem {
-            get { return _selectedItem; }
+            get => _selectedItem;
             set {
                 if (_selectedItem != value) {
                     _selectedItem = value;
@@ -40,7 +43,7 @@ namespace jdx.ApplManga.ViewModels {
 
         private string _selectedTitle;
         public string SelectedTitle {
-            get { return _selectedTitle; }
+            get => _selectedTitle;
             set {
                 _selectedTitle = value;
                 RaisePropertyChanged(nameof(SelectedTitle));
@@ -51,7 +54,7 @@ namespace jdx.ApplManga.ViewModels {
 
         private string _selectedAuthor;
         public string SelectedAuthor {
-            get { return _selectedAuthor; }
+            get => _selectedAuthor;
             set {
                 _selectedAuthor = value;
                 RaisePropertyChanged(nameof(SelectedAuthor));
@@ -62,7 +65,7 @@ namespace jdx.ApplManga.ViewModels {
 
         private string _selectedImage;
         public string SelectedImage {
-            get { return _selectedImage; }
+            get => _selectedImage;
             set {
                 _selectedImage = value;
                 RaisePropertyChanged(nameof(SelectedImage));
@@ -73,7 +76,7 @@ namespace jdx.ApplManga.ViewModels {
 
         private CheckedObservableCollection<MangaList> _manga;
         public CheckedObservableCollection<MangaList> Manga {
-            get { return _manga; }
+            get => _manga;
             set {
                 _manga = value;
                 RaisePropertyChanged(nameof(Manga));
@@ -91,7 +94,7 @@ namespace jdx.ApplManga.ViewModels {
 
         private string _filter;
         public string Filter {
-            get { return _filter; }
+            get => _filter;
             set {
                 _filter = value;
                 OnFilterChanged();
@@ -113,104 +116,7 @@ namespace jdx.ApplManga.ViewModels {
         }
 
         #endregion
-
-        //#region ComboBox properties
-
-        //protected string[] SortOptions = new string[] {
-        //    "A to Z",
-        //    "Release year",
-        //    "Author"
-        //};
-
-        //protected string[] StatusOptions = new string[] {
-        //    "All",
-        //    "Completed",
-        //    "Ongoing"
-        //};
-
-        //// Populate this with sites from database,
-        //// use default values if none is provided
-        //public string[] SiteOptions = new string[] {
-        //    "All",
-        //    "Bato.to",
-        //    "KissManga",
-        //    "MangaFox"
-        //};
-
-        //private string _sortOptionsSelectedValue;
-        //public string SortOptionsSelectedValue {
-        //    get { return _sortOptionsSelectedValue; }
-        //    set {
-        //        _sortOptionsSelectedValue = value;
-        //        RaisePropertyChanged(nameof(SortOptionsSelectedValue));
-        //    }
-        //}
-
-        //private string _statusOptionsSelectedValue;
-        //public string StatusOptionsSelectedValue {
-        //    get { return _statusOptionsSelectedValue; }
-        //    set {
-        //        _statusOptionsSelectedValue = value;
-        //        RaisePropertyChanged(nameof(StatusOptionsSelectedValue));
-        //    }
-        //}
-
-        //private string _siteOptionsSelectedValue;
-        //public string SiteOptionsSelectedValue {
-        //    get { return _siteOptionsSelectedValue; }
-        //    set {
-        //        _siteOptionsSelectedValue = value;
-        //        RaisePropertyChanged(nameof(SiteOptionsSelectedValue));
-        //    }
-        //}
-
-        //private ObservableCollection<string> _sortComboOptions;
-        //public ObservableCollection<string> SortComboOptions {
-        //    get { return _sortComboOptions; }
-        //    set {
-        //        if (_sortComboOptions != value) {
-        //            _sortComboOptions = value;
-        //            RaisePropertyChanged(nameof(SortComboOptions));
-        //        }
-        //    }
-        //}
-
-        //private ObservableCollection<string> _statusComboOptions;
-        //public ObservableCollection<string> StatusComboOptions {
-        //    get { return _statusComboOptions; }
-        //    set {
-        //        if (_statusComboOptions != value) {
-        //            _statusComboOptions = value;
-        //            RaisePropertyChanged(nameof(StatusComboOptions));
-        //        }
-        //    }
-        //}
-
-        //private ObservableCollection<string> _siteComboOptions;
-        //public ObservableCollection<string> SiteComboOptions {
-        //    get { return _siteComboOptions; }
-        //    set {
-        //        if (_siteComboOptions != value) {
-        //            _siteComboOptions = value;
-        //            RaisePropertyChanged(nameof(SiteComboOptions));
-        //        }
-        //    }
-        //}
-
-        //private void SetupComboBoxes() {
-        //    // Populate sort dropdown values
-        //    SortComboOptions = new ObservableCollection<string>(SortOptions);
-        //    StatusComboOptions = new ObservableCollection<string>(StatusOptions);
-        //    SiteComboOptions = new ObservableCollection<string>(SiteOptions);
-
-        //    // Set default selected options
-        //    SortOptionsSelectedValue = SortOptions[0];
-        //    StatusOptionsSelectedValue = StatusOptions[0];
-        //    SiteOptionsSelectedValue = SiteOptions[0];
-        //}
-
-        //#endregion
-
+        
         #region Commands
 
         /// <summary>
@@ -235,10 +141,12 @@ namespace jdx.ApplManga.ViewModels {
 
         public void ShowDialog() {
             IoC.UIManager.ShowMessageDialog(new MsgBoxDialogViewModel {
-                MsgTitle = "This is a test dialog",
-                MsgContent = "Sample message content",
-                MsgOkCaption = "Dismiss"
+                DialogTitle = "This is a test dialog",
+                DialogText = "Sample message content",
+                DialogOkCaption = "Dismiss"
             });
+
+            Console.WriteLine("ShowDialog() was invoked");
         }
 
         public BrowseViewModel() {

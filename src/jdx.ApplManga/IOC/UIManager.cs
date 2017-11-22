@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using jdx.ApplManga.Core.IOC;
 using jdx.ApplManga.Core.ViewModels;
-using System.Windows.Forms;
+using System.Windows;
+using jdx.ApplManga.Controls.DialogEx;
 
 namespace jdx.ApplManga.IOC {
     /// <summary>
@@ -15,7 +16,7 @@ namespace jdx.ApplManga.IOC {
         /// <param name="viewModel"></param>
         /// <returns></returns>
         public Task ShowMessageDialog(MsgBoxDialogViewModel viewModel) {
-            return Task.Run(() => MessageBox.Show("Test"));
+            return new DialogMessageBox().ShowDialog(viewModel);
         }
     }
 }

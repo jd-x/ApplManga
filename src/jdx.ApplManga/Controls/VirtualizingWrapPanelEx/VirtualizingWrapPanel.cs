@@ -74,9 +74,8 @@ namespace jdx.ApplManga.Controls.VirtualizingWrapPanel {
         }
 
         protected override Size MeasureOverride(Size availableSize) {
-            if (_itemsControl == null) {
+            if (_itemsControl == null)
                 return availableSize;
-            }
 
             _isInMeasure = true;
             _childLayouts.Clear();

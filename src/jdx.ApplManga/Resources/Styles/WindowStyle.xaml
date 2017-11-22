@@ -13,7 +13,7 @@
     </Style>
 
     <!--  WINDOW TEMPLATE  -->
-    <Style TargetType="{x:Type local:MainWindow}">
+    <Style x:Key="DefaultWindowStyle" TargetType="{x:Type Window}">
         <Setter Property="Foreground" Value="{StaticResource ControlColorFGDefaultNormal}" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         <Setter Property="TextOptions.TextHintingMode" Value="Fixed" />
@@ -23,6 +23,7 @@
                 <ControlTemplate TargetType="{x:Type Window}">
                     <Border>
                         <Grid>
+                            <!--  Page Content  -->
                             <Border>
                                 <ContentPresenter />
                             </Border>
@@ -36,10 +37,10 @@
                                         <RowDefinition Height="36" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <!--  CHROME BUTTONS  -->
+                                    <!--  Chrome Buttons  -->
                                     <StackPanel
                                         Grid.Row="0"
-                                        Grid.Column="2"
+                                        Grid.Column="1"
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Top"
                                         Orientation="Horizontal"
@@ -48,7 +49,8 @@
                                             Name="MinimizeWindowButton"
                                             Width="46"
                                             Height="36"
-                                            Command="{Binding MinimizeCommand}">
+                                            Command="{Binding MinimizeCommand}"
+                                            Style="{DynamicResource ChromeButtonDefaultStyle}">
                                             <Button.Content>
                                                 <TextBlock
                                                     Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
@@ -62,6 +64,7 @@
                                                 Width="46"
                                                 Height="36"
                                                 Command="{Binding MaximizeCommand}"
+                                                Style="{DynamicResource ChromeButtonDefaultStyle}"
                                                 Visibility="Collapsed">
                                                 <Button.Content>
                                                     <TextBlock
@@ -74,7 +77,8 @@
                                                 Name="MaximizeWindowButton"
                                                 Width="46"
                                                 Height="36"
-                                                Command="{Binding MaximizeCommand}">
+                                                Command="{Binding MaximizeCommand}"
+                                                Style="{DynamicResource ChromeButtonDefaultStyle}">
                                                 <Button.Content>
                                                     <TextBlock
                                                         Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
@@ -111,6 +115,71 @@
                             <Setter TargetName="RestoreWindowButton" Property="Visibility" Value="Visible" />
                         </Trigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="DialogWindowStyle"
+        BasedOn="{StaticResource DefaultWindowStyle}"
+        TargetType="{x:Type Window}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border Background="White">
+                        <Grid>
+                            <Border BorderThickness="{TemplateBinding BorderThickness}">
+                                <Grid Name="MetroTitleBarLayoutRoot">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="36" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <!--  Dialog Title  -->
+                                    <StackPanel Grid.Column="0" Margin="10,5,5,5">
+                                        <TextBlock
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            Text="{TemplateBinding Title}" />
+                                    </StackPanel>
+                                    <!--  Chrome Buttons  -->
+                                    <StackPanel
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Orientation="Horizontal"
+                                        WindowChrome.IsHitTestVisibleInChrome="True">
+                                        <Button
+                                            Name="CloseWindowButton"
+                                            Width="46"
+                                            Height="36"
+                                            Command="{Binding ExitCommand}"
+                                            Style="{DynamicResource ChromeButtonExitStyle}">
+                                            <Button.Content>
+                                                <TextBlock
+                                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                    Style="{DynamicResource MetroSymbolStyle}"
+                                                    Text="{StaticResource MDL2ExitWindowIcon}" />
+                                            </Button.Content>
+                                        </Button>
+                                    </StackPanel>
+                                    <!--  Page Content  -->
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="2"
+                                        Padding="10,10,10,10"
+                                        ClipToBounds="True">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

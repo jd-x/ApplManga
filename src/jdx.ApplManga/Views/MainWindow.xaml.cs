@@ -90,8 +90,18 @@ namespace jdx.ApplManga {
 
         public MainWindow() {
             InitializeComponent();
-            DataContext = new MainViewModel(Dispatcher, this);
+            DataContext = new MainViewModel(this);
             Loaded += MainWindow_Loaded;
+        }
+
+        private void ApplWindow_Activated(object sender, EventArgs e) {
+            // Hide overlay if window is active
+            (DataContext as MainViewModel).DimOverlayVisible = false;
+        }
+
+        private void ApplWindow_Deactivated(object sender, EventArgs e) {
+            // Show overlay on lost focus
+            (DataContext as MainViewModel).DimOverlayVisible = true;
         }
     }
 }

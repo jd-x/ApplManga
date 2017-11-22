@@ -3,10 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="clr-namespace:jdx.ApplManga.Controls.CommandControlEx"
     xmlns:conv="clr-namespace:jdx.ApplManga.Converters"
-    xmlns:localvm="clr-namespace:jdx.ApplManga.ViewModels"
-    xmlns:localv="clr-namespace:jdx.ApplManga.Views">
+    xmlns:localv="clr-namespace:jdx.ApplManga.Views"
+    xmlns:localvm="clr-namespace:jdx.ApplManga.ViewModels">
 
-    <!-- TABCONTROL TEMPLATE -->
+    <!--  TABCONTROL TEMPLATE  -->
     <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
         <Setter Property="SelectedIndex" Value="{Binding SelectedTabIndex}" />
         <Setter Property="ItemContainerStyle" Value="{DynamicResource TabItemStyle}" />
@@ -64,7 +64,7 @@
         </Setter>
     </Style>
 
-    <!-- TABITEM TEMPLATE -->
+    <!--  TABITEM TEMPLATE  -->
     <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -132,7 +132,7 @@
         </Setter>
     </Style>
 
-    <!-- TABCONTENTS -->
+    <!--  TABCONTENTS  -->
     <!--DataTemplate x:Name="DownloadsViewTemplate" DataType="{x:Type viewModels:DownloadsViewModel}">
         <views:DownloadsView DataContext="{Binding}" />
     </-->
@@ -149,7 +149,7 @@
         <views:FoldersView DataContext="{Binding}" />
     </-->
 
-    <!-- TABCONTENT CHILD VIEWS -->
+    <!--  TABCONTENT CHILD VIEWS  -->
     <!--DataTemplate x:Name="BrowseViewTemplate" DataType="{x:Type viewModels:BrowseViewModel}">
         <views:BrowseView />
     </-->
@@ -158,7 +158,7 @@
         <views:InfoView />
     </-->
 
-    <!-- TABCONTENT BASE GRID STYLE -->
+    <!--  TABCONTENT BASE GRID STYLE  -->
     <Style x:Key="TabContentGridStyle" TargetType="{x:Type Grid}">
         <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
         <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
